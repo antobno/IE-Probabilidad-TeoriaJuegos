@@ -1,0 +1,904 @@
+\chapter{TEORÍA DE CONJUNTOS}
+\printchaptertableofcontents
+
+Partimos del supuesto de que la palabra conjunto es primitiva, y aceptamos que tenemos la idea de lo que es un conjunto. Para uniformizar dicha idea, diremos que los objetos que componen un conjunto son de cualquier especie y están bien determinados, esto último en el sentido de que dado un objeto arbitrario, se puede decidir si es o no del conjunto. Así por ejemplo, las mujeres bonitas no forman un conjunto; en cambio, los números pares sí. A los objetos que componen un conjunto se les llama elementos del conjunto.
+
+Para nombrar conjuntos, generalmente se emplean letras mayúsculas $A$, $B$, $C$, $D$, $\dots$, y para nombrar a los elementos de un conjunto, si es el caso, se emplean usualmente letras minúsculas $a, b, c, d, \dots$. Para decir que un objeto $x$ es elemento de un conjunto $A$, escribiremos $x \in A$ y leemos: $x$ es elemento de $A$ o $x$ está en $A$ o $x$ pertenece a $A$. Para decir que un objeto $x$ no es elemento de un conjunto $A$, escribiremos $x \notin A$, y leemos: $x$ no es elemento de $A$ o $x$ no está en $A$ o $x$ no pertenece a $A$.
+
+Idealmente, nos gustaría que con cada enunciado o propiedad $P$ (con solo una variable libre) se asociara un conjunto $A$, consistiendo de todos los objetos que satisfacen a $P$. Bajo esta situación escribiríamos
+$$A = \left\{x \mid P(x) \right\}$$
+(se lee: $A$ es el conjunto de los objetos $x$, tal que $x$ satisface a $P$), donde $P(x)$ es la condición o propiedad que debe satisfacer un objeto $x$ para ser elemento de $A$. En este caso podemos construir los conjuntos
+\begin{align*}
+    A & = \{ x \mid x \text{ es número real y } |x-2|<3 \} \\
+    B & = \left\{ x \mid x = n^2, \text{ para algún número natural } n \right\} \\
+    C &  = \{ x \mid x \text{ es número primo}\}
+\end{align*}
+
+\newpage
+Pero también podríamos construir los conjuntos
+\begin{align*}
+    D & = \{x \mid x = x\} \\ 
+    E & = \{x \mid x \text { es humano}\} \\ 
+    F & = \{x \mid x \text { no es humano}\}
+\end{align*}
+Claramente $D \in D$, $E \notin E$ y $F \in F$.
+
+Análogamente podríamos construir los ``conjuntos'':
+$$F = \{x \mid x \text{ es conjunto}\} \quad \text{ y } \quad G = \{x \mid x \text{ no es conjunto}\}.$$
+Observemos que en este caso $F \in F$ y $G \notin G$.
+
+También podríamos construir el ``conjunto''
+$$X = \{x \mid x \text{ es conjunto y } x \notin x\}.$$
+En este caso se tendría que
+$$X \in X \Longrightarrow X \notin X$$
+y también que
+$$X \notin X \Longrightarrow X \in X;$$
+que son contradicciones evidentes. A este ejemplo se le conoce como \textbf{Paradoja de Russell}, en honor al filósofo inglés Bertrand Russell quien la formuló.
+
+De la exposición precedente, pudiera concluírse que la construcción de conjuntos en la forma $\left\{x \mid P(x) \right\}$, debe abandonarse, lo que no ha ocurrido; más bien se han hecho ciertas restricciones, a través del desarrollo de la teoría axiomática de conjuntos. En ese contexto, una propuesta es que hay dos tipos de colecciones, las clases que son conjuntos y las clases que no son conjuntos: cualquier colección de objetos especificados por alguna propiedad $P$, es una clase; mientras que un conjunto es una clase que es miembro de otra clase. Así que
+$$A = \{x \mid x \text{ es conjunto y } x \notin x\}$$
+es una clase que no es conjunto, con lo que se evita la paradoja de Russell.
+
+Por otro lado, la expresión
+$$A = \left\{2, \sqrt{2}, \pi \right\}$$
+denota al conjunto
+$$A = \left\{x \mid x = 2 \text { o } x = \sqrt{2} \text { o } x = \pi \right\}.$$
+Análogamente, las expresiones
+$$A = \{2, 4, 6, \dots, 100\}$$
+y
+$$B = \{2, 4, 6, \dots\}$$
+son casos particulares de notación para los conjuntos
+$$A = \{x \mid x \text { es número par menor o igual que } 100\}$$
+y
+$$B = \{x \mid x \text { es número par}\}$$
+respectivamente.
+
+Observemos que una persona de nombre Juan, no es elemento del conjunto
+$$A = \left\{\text {Juan, Luis, silla, mesa, venus, tierra}\right\}$$\newpage\noindent
+lo que es elemento del conjunto $A$, es la palabra (nombre) Juan. En este caso, $A$ es un conjunto de palabras (nombres). \\
+
+El otro modo de construir conjuntos es por medio del \textbf{axioma de elección}, el cual no enunciaremos pues no es el objetivo de esta obra. Pero, para tener una idea de esta construcción, veamos el ejemplo siguiente. Clasifiquemos a los números reales en diferentes conjuntos, de manera que: Dos números reales $x$ y $y$ están en un mismo conjunto, si y solo si, $x - y$ es número racional. Digamos que $\Omega$ es la colección de tales conjuntos. Por ejemplo, para cada número primo $p$, los conjuntos
+$$A_p = \left\{x \mid x = \sqrt{p}+r, \text { con } r \text { número racional} \right\}$$
+y
+$$C = \{x \mid x \text{ es número racional}\}$$
+son elementos de $\Omega$. Claramente $\Omega$ es infinito y también cada $S \in \Omega$ es infinito. Afirmamos que existe un conjunto $T$ el cual posee solo un elemento en común con cada conjunto $S \in \Omega$. El conjunto $T$ no puede construirse en la forma $\{x \mid P(x)\}$.
+
+En resumen, hay dos maneras de construir conjuntos, una es en la forma $\left\{x \mid P(x) \right\}$, la cual requiere ciertas restricciones, y que se llama construcción por extensión; y la otra construcción es por medio del axioma de elección.
+
+\section{Subconjuntos e igualdad de conjuntos}
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Decimos que $A$ es subconjunto de $B$, y escribimos $A \subset B$, si cada elemento de $A$, es también elemento de $B$.
+\end{definicion}
+
+Observemos que la negación de que $A$ es subconjunto de $B$, es la negación de que cada elemento de $A$ es también elemento de $B$. Por tanto, $A$ no es subconjunto de $B$ si existe al menos un elemento de $A$ que no es elemento de $B$.
+
+En lugar de $A \subset B$ también se escribe $B \supset A$, y en cualquier caso se lee: $A$ es subconjunto de $B$ o $A$ está contenido en $B$ o $B$ contiene a $A$. Para decir que $A$ no es subconjunto de $B$ escribimos $A \not \subset B$ o $B \not \supset A$, y en cualquier caso se lee: $A$ no es subconjunto de $B$ o $A$ no está contenido en $B$ o $B$ no contiene a $A$. Simbólicamente se tiene que:
+$$(A \subset B) \Longleftrightarrow (\forall x, x \in A \Longrightarrow x \in B)$$
+y
+$$(A \not \subset B) \Longleftrightarrow (\exists x \text{ tal que } x \in A \text{ y } x \notin B).$$
+Es conveniente observar que si
+$$A = \left\{ x \mid P(x) \right\}$$
+y
+$$B = \left\{ x \mid Q(x) \right\}$$
+entonces
+$$[A \subset B] \Longleftrightarrow [P(x) \Longrightarrow Q(x)].$$
+\begin{examplebox}{}{}
+    Si
+    \begin{align*}
+        A & = \{x \mid x \text { es número real y }|x| \leq 3\}, \\
+        B & = \{x \mid x \text { es número real y }|x| \leq 4\}
+    \end{align*}
+    entonces $A \subset B$ y $B \not \subset A$.
+\end{examplebox}
+
+\newpage
+
+\begin{examplebox}{}{}
+    Si
+    \begin{align*}
+        A & = \{x \mid x \text { es número primo}\}, \\
+        B & = \{x \mid x \text { es número impar}\}
+    \end{align*}
+    entonces $A \not \subset B$ y $B \not \subset A$.
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Si
+    \begin{align*}
+        A & = \{1, 2\}, \\
+        B & = \{1, 2, 2, 1\}
+    \end{align*}
+    entonces $A \subset B$ y $B \subset A$.
+\end{examplebox}
+
+\begin{prop}{}{alalala}
+    Si $A$, $B$ y $C$ son conjuntos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A \subset A$.
+        \item $(A \subset B$ y $B \subset C) \Longrightarrow A \subset C$.
+    \end{enumerate}
+    \tcblower
+    \demostracion
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Es inmediato.
+        \item Si $A \subset B$ y $B \subset C$, entonces $(x \in A \Longrightarrow x \in B)$ y $(x \in B \Longrightarrow x \in C)$, por tanto $(x \in A \Longrightarrow x \in C)$, de donde se sigue que $A \subset C$.
+    \end{enumerate}
+\end{prop}
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Decimos que $A$ es igual a $B$, y escribimos $A = B$, si $A \subset B$ y $B \subset A$.
+\end{definicion}
+
+Simbólicamente se tiene que:
+$$(A = B) \Longleftrightarrow (A \subset B \text{ y } B \subset A).$$
+
+Observemos que la negación de que los conjuntos $A$ y $B$ son iguales, lo que se expresa escribiendo $A \neq B$, y que se lee: $A$ no es igual a $B$ o $A$ es distinto de $B$, es la negación de que $[A \subset B$ y $B \subset A]$. En consecuencia,
+$$[A \neq B] \Longleftrightarrow[A \not \subset B \text{ o } B \not \subset A].$$
+Es decir,
+$$[A \neq B] \Longleftrightarrow[(\exists x \text{ tal que } x \in A \text { y } x \notin B) \text { o }(\exists x \text{ tal que } x \in B \text{ y } x \notin A)].$$
+También conviene observar que, si $A=\left\{x \mid P(x) \right\} \text { y } B=\left\{x \mid Q(x)\right\}$, entonces
+$$[A = B] \text{ si y solo si } [P(x) \Longleftrightarrow Q(x)].$$
+\begin{examplebox}{}{}
+    Si
+    $$A = \left\{ x \mid x \text{ es número real y } x^2 - 1 = 0 \right\}$$
+    y
+    $$B = \{ -1,  1 \},$$
+    entonces $A = B$.
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Si
+    $$A = \left\{ x \mid x \text{ es múltiplo de } 6 \text{ y } 9 \right\}$$
+    y
+    $$B = \left\{ x \mid x \text{ es múltiplo de } 18 \right\},$$
+    entonces $A = B$.
+\end{examplebox}
+
+\newpage
+
+\begin{examplebox}{}{}
+    Si
+    $$A = \left\{ x \mid x \text{ es número primo y } x>2 \right\}$$
+    y
+    $$B = \left\{ x \mid x \text{ es número impar} \right\},$$
+    entonces $A \subset B$ y $B \not\subset A$, por tanto $A \neq B$.
+\end{examplebox}
+
+\begin{prop}{}{}
+    Si $A$, $B$ y $C$ son conjuntos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A = A$.
+        \item $A = B \Longrightarrow B = A$.
+        \item $(A = B$ y $B = C) \Longrightarrow A = C$.
+    \end{enumerate}
+    \tcblower
+    \demostracion
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A \Longrightarrow A \subset A$ y $A \subset A \Longrightarrow A=A$.
+        \item $A=B \Longrightarrow A \subset B$ y $B \subset A \Longrightarrow B \subset A$ y $A \subset B \Longrightarrow$ $B=A$.
+        \item $A=B$ y $B=C \Longrightarrow(A \subset B$ y $B \subset A)$ y $(B \subset C$ y $C \subset B)$. Entonces $(A \subset B$ y $B \subset C)$ y $(C \subset B$ y $B \subset A)$. Por (ii) de la proposición \ref{prop:alalala}, se sigue $A \subset C$ y $C \subset A \Longrightarrow A=C$.
+    \end{enumerate}
+\end{prop}
+
+Hemos definido bajo qué condiciones un conjunto es \emph{subconjunto} de otro. Así que, el término subconjunto sirve para relacionar conjuntos, pero no cualesquiera dos conjuntos pueden relacionarse bajo este término, es decir, es posible que dados dos conjuntos, ninguno sea subconjunto del otro. Naturalmente que la construcción de subconjuntos de un conjunto, puede hacerse por extensión o por medio del axioma de selección. Para construir por extensión un subconjunto $A$ de un conjunto $B$, procedemos del modo siguiente:
+$$A = \left\{ x \mid x \in B \text{ y } P(x) \right\} \quad \text{ o } \quad A = \left\{ x \in B \mid P(x) \right\},$$
+donde $P(x)$ es una propiedad que puede satisfacer, o no, cada elemento $x$ de $B$. Claro que
+$$\left\{ x \mid x \in B \text{ y } P(x) \right\} \subset \left\{ x \mid x \in B \text{ y } Q(x) \right\},$$
+si y solo si, $\forall x \in B$, $P(x) \Longrightarrow Q(x)$. Finalmente, observemos que si $A$ es conjunto, entonces
+\begin{align*}
+    \left\{ x \mid x \in A \text{ y } x = x \right\} & = \left\{ x \mid x \in A \right\} \\
+    & = A.
+\end{align*}
+
+\section{El conjunto vacío}
+
+\begin{definicion}{}{}
+    Para cada conjunto $A$, definimos el conjunto
+    $$\varnothing_A = \{x \mid x \in A \text { y } x \neq x\},$$
+    el cual es subconjunto de $A$ y se le llama subconjunto vacío (o nulo) de $A$.
+\end{definicion}
+
+Claro que para cada conjunto $A$, el conjunto $\varnothing_A$ no posee elementos, pues cada $x \in A$ satisface $x = x$.
+
+\begin{prop}{}{}
+    Si $A$ y $B$ son conjuntos, entonces
+    $$\varnothing_A = \varnothing_B.$$
+    \demostracion Se deja como ejercicio al lector.
+\end{prop}
+
+\newpage
+
+\begin{definicion}{}{}
+    Al único conjunto que no posee elementos, se le llama conjunto vacío y se le denota por $\varnothing$.
+\end{definicion}
+
+El conjunto $\varnothing$ es subconjunto de cualquier conjunto, es decir, para cualquier conjunto $A$, $\varnothing \subset A$. Así que, si $A$ es conjunto no vacío, entonces al menos tiene como subconjuntos a $\varnothing$ y a $A$ mismo, los cuales se llaman \emph{subconjuntos impropios} de $A$.
+
+\begin{definicion}{}{}
+    Decimos que un conjunto $B$ es subconjunto propio de un conjunto $A$, si $B \neq \varnothing$, $B \subset A$ y $B \neq A$.
+\end{definicion}
+
+Observemos que
+$$(B \subset A \text{ y } B \neq A) \Longleftrightarrow(B \subset A \text{ y } A \not \subset B).$$
+
+De la teoría axiomática de conjuntos, se deduce que ningún conjunto puede ser elemento de sí mismo, y que si $A$ y $B$ son conjuntos no vacíos, no es posible que se cumpla a la vez que $A \in B$ y $B \in A$. También se deduce que
+$$\{ x \mid x \notin x \},$$
+y
+$$\{x \mid x = x \},$$
+no son conjuntos.
+
+\section{La unión e intersección de conjuntos}
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Definimos la unión de $A$ y $B$, denotada por $A \cup B$, como el conjunto
+    $$A \cup B = \{x \mid x \in A \text{ o } x \in B\}.$$
+    La expresión $A \cup B$, se lee: $A$ unión $B$ o la unión de $A$ y $B$.
+\end{definicion}
+
+Simbólicamente se tiene que:
+$$(x \in A \cup B) \Longleftrightarrow(x \in A \text{ o } x \in B)$$
+y
+$$(x \notin A \cup B) \Longleftrightarrow(x \notin A \text{ y } x \notin B).$$
+\begin{examplebox}{}{}
+    Si
+    $$A = \{1,  3\}$$
+    y
+    $$B = \{0,  1,  2\},$$
+    entonces $A \cup B = \{0,  1,  2,  3\}$.
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Si
+    $$A = \{x \mid x \text { es número par}\}$$
+    y
+    $$B = \{x \mid x \text { es número impar}\},$$
+    entonces $A \cup B = \{x \mid x \text{ es número entero positivo}\}$.
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Si $A = \varnothing$ y $B = \varnothing$, entendemos que
+    $$A \cup B = \varnothing.$$
+\end{examplebox}
+
+\newpage
+
+\begin{prop}{}{}
+    Si $A$, $B$ y $C$ son conjuntos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A \cup A = A$.
+        \item $A \cup B = B \cup A$.
+        \item $\varnothing \cup A = A$.
+        \item $(A \cup B) \cup C = A \cup(B \cup C)$.
+        \item $A \subset A \cup B$ y $B \subset A \cup B$.
+        \item $(A \subset C$ y $B \subset C) \Longleftrightarrow A \cup B \subset C$.
+        \item $A \subset B \Longleftrightarrow A \cup B=B$.
+        \item $A \subset B \Longrightarrow A \cup C \subset B \cup C$.
+        \item $A \subset B$ y $C \subset D \Longrightarrow A \cup C \subset B \cup D$.
+    \end{enumerate}
+    \tcblower
+    \demostracion Solo se demostrará (viii) y (ix), los demás dejan como ejercicio al lector.
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item[viii.] $x \in A \cup C \Longrightarrow x \in A$ o $x \in C \Longrightarrow x \in B$ o $x \in C \Longrightarrow x \in B \cup C$.
+        \item[ix.] Por hipótesis, $A \subset B$ y $C \subset D$, entonces, aplicando (viii), se tiene
+        \begin{align*}
+            A \cup C & \subset B \cup C \\
+            & = C \cup B \\
+            & \subset D \cup B \\
+            & = B \cup D.
+        \end{align*}
+    \end{enumerate}
+\end{prop}
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Definimos la intersección de $A$ y $B$, denotada por $A \cap B$, como el conjunto
+    $$A \cap B = \{x \mid x \in A \text { y } x \in B\}.$$
+    La expresión $A \cap B$, se lee: $A$ intersección $B$ o la intersección de $A$ y $B$.
+\end{definicion}
+
+Simbólicamente se tiene que:
+$$(x \in A \cap B) \Longleftrightarrow(x \in A \text { y } x \in B)$$
+y
+$$(x \notin A \cap B) \Longleftrightarrow(x \notin A \text { o } x \notin B).$$
+
+\begin{examplebox}{}{}
+    Si
+    $$A = \{1,  2,  3\}$$
+    y
+    $$B = \{0,  1,  2\},$$
+    entonces $A \cap B = \{1,  2\}$.
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Si
+    $$A = \{x \mid x \text{ es número par}\}$$
+    y
+    $$B = \{x \mid x \text{ es número impar}\},$$
+    entonces $A \cap B = \varnothing$.
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Si
+    $$A = \{x \mid x \text{ es número par}\}$$
+    y
+    $$B = \{x \mid x \text{ es número primo}\},$$
+    entonces $A \cap B = \{ 2 \}$.
+\end{examplebox}
+
+\newpage
+
+\begin{prop}{}{}
+    Si $A$, $B$ y $C$ son conjuntos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A \cap A=A$.
+        \item $A \cap B=B \cap A$.
+        \item $\varnothing \cap A=\varnothing$.
+        \item $(A \cap B) \cap C=A \cap(B \cap C)$.
+        \item $A \cap B \subset A$ y $A \cap B \subset B$.
+        \item $(C \subset A$ y $C \subset B) \Longleftrightarrow C \subset A \cap B$.
+        \item $(A \subset B) \Longleftrightarrow(A \cap B=A)$.
+        \item $A \subset B \Longrightarrow A \cap C \subset A \cap C$.
+        \item $A \subset B$ y $C \subset D \Longrightarrow A \cap C \subset B \cap D$.
+    \end{enumerate}
+    \tcblower
+    \demostracion Se proponen como ejercicio al lector.
+\end{prop}
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Decimos que $A$ y $B$ son ajenos, si $A \cap B = \varnothing$.
+\end{definicion}
+
+Observemos que el conjunto vacío es ajeno con cualquier conjunto.
+
+La siguiente proposición enuncia las propiedades distributivas de la unión respecto de la intersección, y viceversa.
+
+\begin{prop}{}{}
+    Si $A$, $B$ y $C$ son conjuntos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A \cap(B \cup C) = (A \cap B) \cup(A \cap C)$.
+        \item $A \cup(B \cap C) = (A \cup B) \cap(A \cup C)$.
+    \end{enumerate}
+    \tcblower
+    \demostracion
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Por definición de igualdad, debemos probar que
+        $$A \cap(B \cup C) \subset(A \cap B) \cup(A \cap C)$$
+        y que
+        $$(A \cap B) \cup(A \cap C) \subset A \cap(B \cup C).$$
+        En este caso podemos probar simultáneamente ambas contenciones. De esta forma, tenemos que
+        \begin{align*}
+            x \in A \cap(B \cup C) & \Longleftrightarrow x \in A \text { y } x \in(B \cup C) \\ 
+            & \Longleftrightarrow x \in A \text { y }(x \in B \text { o } x \in C) \\ 
+            & \Longleftrightarrow (x \in A \text { y } x \in B) \text { o }(x \in A \text { y } x \in C) \\ 
+            & \Longleftrightarrow x \in A \cap B \text { o } x \in A \cap C \\ 
+            & \Longleftrightarrow x \in(A \cap B) \cup(A \cap C)
+        \end{align*}
+        \item Para demostrar la igualdad, debemos verificar ambas contenciones. Primero, debemos probar que
+        $$A \cup(B \cap C) \subset (A \cup B) \cap (A \cup C).$$
+        Luego, debemos mostrar que
+        $$(A \cup B) \cap (A \cup C) \subset A \cup(B \cap C).$$
+        Pero también podemos proceder de la siguiente manera:
+        \begin{align*}
+            (A \cup B) \cap(A \cup C) & =[(A \cup B) \cap A] \cup[(A \cup B) \cap C] \\
+            & =[A] \cup[(A \cap C) \cup(B \cap C)] \\
+            & =[A \cup(A \cap C)] \cup(B \cap C) \\
+            & =A \cup(B \cap C)
+        \end{align*}
+    \end{enumerate}
+\end{prop}
+
+\newpage
+
+\section{Diferencia de conjuntos}
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Definimos la diferencia de $A$ y $B$, denotada por $A - B$, como el conjunto
+    $$A - B = \{x \mid x \in A \text { y } x \notin B\}.$$
+    La expresión $A - B$ se lee: $A$ menos $B$ o la diferencia de $A$ y $B$.
+\end{definicion}
+
+Simbólicamente se tiene que:
+$$(x \in A - B) \Longleftrightarrow(x \in A \text{ y } x \notin B)$$
+y
+$$(x \notin A - B) \Longleftrightarrow(x \notin A \text{ o } x \in B).$$
+
+\begin{examplebox}{}{}
+    Si
+    $$A = \{1,  2,  3,  4,  5,  6\}$$
+    y
+    $$B = \{2,  4,  6,  8,  10\},$$
+    entonces
+    $$A - B = \{1,  3,  5\}$$
+    y
+    $$B - A = \{8,  10\}.$$
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Si
+    $$A = \{x \mid x \text { es número natural}\}$$
+    y
+    $$B = \{x \mid x \text { es número par}\},$$
+    entonces 
+    $$A - B = \{x \mid x \text { es número impar}\}$$
+    y
+    $$B - A = \varnothing.$$
+\end{examplebox}
+
+De los ejemplos anteriores se deduce que, en general,
+$$A - B \neq B - A;$$
+es decir, que la diferencia de conjuntos no es conmutativa. Esto significa que el orden en el que se restan los conjuntos importa, ya que restar $B$ de $A$ no produce el mismo resultado que restar $A$ de $B$. Además, la diferencia de conjuntos no es asociativa, es decir, en general,
+$$(A - B) - C \neq A - (B - C).$$
+Esto implica que la forma en que agrupamos los conjuntos al restarlos también afecta el resultado.
+
+\begin{prop}{}{}
+    Si $A$ y $B$ son conjuntos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A - A = \varnothing$.
+        \item $A - \varnothing = A$.
+        \item $A - B \subset A$.
+        \item $A \subset B \Longleftrightarrow A - B = \varnothing$.
+    \end{enumerate}
+    \tcblower
+    \demostracion Se dejan como ejercicio al lector.
+\end{prop}
+
+\newpage
+
+\section{Complemento de un conjunto}
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Definimos el complemento de $A$ relativo a $B$, denotado por $\mathcal{C}_B(A)$, como el conjunto
+    $$\mathcal{C}_B(A) = B - A.$$
+\end{definicion}
+
+Si $A$ es un conjunto, no es posible hablar de $\{x \mid x \notin A\}$, pues nos llevaría a conclusiones paradójicas. Por ejemplo, si $A=\{1,  2\}$ y $B=\{x \mid x \notin A\}$, entonces $A \in B$ y también $B \in B$. Sin embargo, siempre que trabajamos con conjuntos, podemos suponer que estos son subconjuntos de otro conjunto ``más grande'' denominado \textbf{conjunto universal}. Tal conjunto universal depende del discurso, esto es, de los conjuntos con que se trabaje en una situación dada. En general llamaremos $X$ al conjunto universal de un discurso, y esto significa que los conjuntos que se mencionen en el discurso, serán subconjuntos de $X$. Lo anterior permitirá simplificar la escritura cuando hablemos del complemento de un conjunto $A$, relativo al conjunto universal $X$; pues en lugar de $\mathcal{C}_X(A)$, escribiremos simplemente $\mathcal{C}(A)$ o $A^C$. Por tanto
+$$A^C = X - A.$$
+Vamos a convenir en escribir
+$$x \in A^C \Longleftrightarrow x \notin A,$$
+en lugar de
+$$x \in A^C \Longleftrightarrow x \in X \text{ y } x \notin A,$$
+y por tanto
+$$x \notin A^C \Longleftrightarrow x \in A.$$
+
+\begin{prop}{}{}
+    Si $A$ es un conjunto y $X$ es el conjunto universal, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A \cup A^C = X$.
+        \item $A \cap A^C = \varnothing$.
+        \item $A - A^C = A$.
+        \item $\left(A^C\right)^C = A$.
+        \item $\varnothing^C = X$.
+        \item $X^C = \varnothing$.
+        \item $A \cup X = X$.
+        \item $A \cap X = A$.
+        \item $A - X = \varnothing$.
+        \item $A - B = A \cap B^C$.
+        \item $A \subset B \Longleftrightarrow B^C \subset A^C$.
+        \item $A \subset B^C \Longleftrightarrow B \subset A^C$.
+    \end{enumerate}
+    \tcblower
+    \demostracion Solo se demostrará (i), los demás incisos se dejan como ejercicio al lector.
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Por definición,
+        $$A^C = \{x \in X \mid x \notin A\}.$$
+        Ahora, consideremos
+        $$A \cup A^C = \left\{x \in X \mid x \in A \text{ o } x \in A^C\right\}.$$
+        Dado que $A$ y $A^C$ cubren todos los elementos del conjunto universal $X$, cualquier elemento $x \in X$ estará en $A$ o en $A^C$. Por lo tanto
+        $$A \cup A^C = X.$$
+    \end{enumerate}
+\end{prop}
+
+\newpage
+
+El siguiente teorema es conocido como el Teorema de De Morgan. Este teorema establece las relaciones entre las operaciones de unión e intersección de conjuntos y sus complementos, proporcionando una herramienta fundamental en la teoría de conjuntos y la lógica matemática.
+
+\begin{theorem}{}{}
+    Si $A$ y $B$ son conjuntos y $X$ es el conjunto universal, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $(A \cup B)^C = A^C \cap B^C$.
+        \item $(A \cap B)^C = A^C \cup B^C$.
+    \end{enumerate}
+    \tcblower
+    \demostracion
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Para demostrar que $(A \cup B)^C = A^C \cap B^C$, consideremos un elemento $x$ y analicemos su pertenencia a los conjuntos involucrados:
+        \begin{align*}
+            x \in(A \cup B)^C & \Longleftrightarrow x \notin A \cup B \\ 
+            & \Longleftrightarrow x \notin A \text{ y } x \notin B \\ 
+            & \Longleftrightarrow  x \in A^C \text { y } x \in B^C \\ 
+            & \Longleftrightarrow x \in A^C \cap B^C
+        \end{align*}
+        \item Para demostrar que $(A \cap B)^C = A^C \cup B^C$, consideremos un elemento $x$ y analicemos su pertenencia a los conjuntos involucrados:
+        \begin{align*}
+            x \in(A \cap B)^C & \Longleftrightarrow x \notin A \cap B \\ 
+            & \Longleftrightarrow x \notin A \text{ y } x \notin B \\ 
+            & \Longleftrightarrow  x \in A^C \text { o } x \in B^C \\ 
+            & \Longleftrightarrow x \in A^C \cup B^C
+        \end{align*}
+    \end{enumerate}
+\end{theorem}
+
+\begin{prop}{}{}
+    Si $A$, $B$, $C$ y $D$ son conjuntos y $X$ es el conjunto universal, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A - B = A - (A \cap B)$.
+        \item $(A \cap B = \varnothing$ y $A \cup B = X) \Longrightarrow B = A^C$.
+        \item $A - B = A \Longleftrightarrow B - A = B$.
+        \item $(A \cup B) - (A \cap B) = (A - B) \cup(B - A)$.
+    \end{enumerate}
+    \tcblower
+    \demostracion Se dejan como ejercicio al lector.
+\end{prop}
+
+\section{Diagramas de Venn-Euler}
+
+En los diagramas de Venn-Euler, a un conjunto no vacío se le representa con una figura cerrada, dentro de un rectángulo que representa el conjunto universal y se utilizan para comparar, contrastar y analizar la intersección, la unión y la diferencia de dichos conjuntos.
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+        \coordinate (A) at (-2.2,0);
+        \coordinate (B) at (3,0.5);
+        \coordinate (C) at (0.5,-0.3);
+        \draw[thick] (-4.5,-2) rectangle (4.5,2);
+        \draw[cw0] (A) circle (1.2cm) node {$A$};
+        \draw[cw0!75] (B) circle (0.9cm) node {$B$};
+        \draw[cw0!50] (C) circle (0.6cm) node {$C$};
+    \end{tikzpicture}
+    \caption{Ejemplo de diagrama de Venn-Euler que muestra tres conjuntos $A$, $B$ y $C$ dentro de un conjunto universal $X$. El conjunto $A$ está representado por el círculo más grande a la izquierda, el conjunto $B$ por el círculo mediano a la derecha, y el conjunto $C$ por el círculo más pequeño en el centro.}
+\end{figure}
+
+\newpage
+
+Las intersecciones entre las figuras se utilizan para mostrar la relación entre estos conjuntos, ya sea para señalar la presencia de elementos comunes o para evidenciar su exclusividad. Además, podemos hacer diagramas de las operaciones antes vistas:
+\def\firstcircle{(0,0) circle (1.5cm)}
+\def\secondcircle{(0:2cm) circle (1.5cm)}
+
+\colorlet{circle edge}{cw0}
+\colorlet{circle area}{cw0!70}
+
+\tikzset{filled/.style={fill=circle area, draw=circle edge, thick},outline/.style={draw=circle edge, thick}}
+
+\begin{figure*}[h!]
+    \centering
+    \subfloat[$A \cup B$]{
+    \begin{tikzpicture}
+        \draw[filled] \firstcircle node[white] {$A$}
+        \secondcircle node[white] {$B$};
+    \end{tikzpicture}
+    } \hfill
+    \subfloat[$A \cap B$]{
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip \firstcircle;
+            \fill[filled] \secondcircle;
+        \end{scope}
+        \draw[outline] \firstcircle node {$A$};
+        \draw[outline] \secondcircle node {$B$};
+    \end{tikzpicture}
+    } \hfill
+    \subfloat[$A-B$]{
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip \firstcircle;
+            \draw[filled, even odd rule] \firstcircle node[white] {$A$}
+            \secondcircle;
+        \end{scope}
+        \draw[outline] \firstcircle
+        \secondcircle node {$B$};
+    \end{tikzpicture}
+    } \\
+    \subfloat[$B-A$]{
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip \secondcircle;
+            \draw[filled, even odd rule] \firstcircle
+            \secondcircle node[white] {$B$};
+        \end{scope}
+        \draw[outline] \firstcircle node {$A$}
+        \secondcircle;
+        \node at (0,-2) {~};
+    \end{tikzpicture}
+    } \hfill
+    \subfloat[$A^C$]{
+    \begin{tikzpicture}
+        \begin{scope}
+            \fill[cw0!70] (-2.5,-2) rectangle (2.5,2);
+            \draw[thick,cw0] (-2.5,-2) rectangle (2.5,2);
+            \fill[white] (0,0) circle (1.5cm);
+            \node at (0,0) {$A$};
+            \draw[cw0!70,thick] (0,0) circle (1.5cm);
+        \end{scope}
+    \end{tikzpicture}
+    } \hfill
+    \subfloat[$A \subset B$]{
+    \begin{tikzpicture}
+        \begin{scope}
+            \draw[thick,cw0] (-2.5,-2) rectangle (2.5,2);
+            \node at (0.8,0.8) {$B$};
+            \draw[cw0,thick] (0,0) circle (1.5cm);
+            \node at (-0.5,-0.5) {$A$};
+            \draw[cw0,thick] (-0.5,-0.5) circle (0.6cm);
+        \end{scope}
+    \end{tikzpicture}
+    }
+    \caption{Diagramas de Venn que ilustran varias operaciones de conjuntos. (a) La unión de $A$ y $B$, representada por el área sombreada que cubre ambos conjuntos. (b) La intersección de $A$ y $B$, mostrada como el área común sombreada entre ambos conjuntos. (c) La diferencia $A - B$, que es el área de $A$ excluyendo la intersección con $B$. (d) La diferencia $B - A$, que es el área de $B$ excluyendo la intersección con $A$. (e) El complemento de $A$, $A^C$, que es el área fuera del conjunto $A$ dentro del conjunto universal. (f) La relación de subconjunto $A \subset B$, donde $A$ está completamente contenido dentro de $B$.}
+\end{figure*}
+
+\section{Producto cartesiano}
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos no vacíos, y sean $a \in A$ y $b \in B$. Definimos la pareja ordenada $(a, b)$, donde $a$ es la primera entrada (o primera coordenada) y $b$ es la segunda entrada (o segunda coordenada), como
+    $$(a, b) = \big\{ \{a\}, \{ a, b \} \big\}.$$
+\end{definicion}
+
+\begin{prop}{}{}
+    Sean $A$ y $B$ conjuntos no vacíos y sean $a \in A$ y $b \in B$. Entonces
+    $$(a, b) = (b, a) \Longleftrightarrow a = b.$$
+    \tcblower
+    \demostracion Se deja como ejercicio al lector.
+\end{prop}
+
+En consecuencia de la proposición anterior, tenemos que
+$$(a, b) \neq (b, a) \Longleftrightarrow a \neq b.$$
+
+\begin{theorem}{}{1.8.3}
+    Sean $A$ y $B$ conjuntos no vacíos, sean $a$, $c \in A$ y sean $b$, $d \in B$. Entonces
+    $$(a, b) = (c, d) \Longleftrightarrow a=c \text{ y } b = d.$$
+    \tcblower
+    \demostracion Se deja como ejercicio al lector.
+\end{theorem}
+
+\newpage
+
+En consecuencia del teorema anterior que
+$$(a, b) \neq (c, d) \Longleftrightarrow a \neq c ~\text{ o }~ b \neq d.$$
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Si $A \neq \varnothing$ y $B \neq \varnothing$, se define el producto cartesiano de $A$ y $B$, denotado por $A \times B$, como el conjunto
+    $$A \times B = \{(a, b) \mid a \in A \text{ y } b \in B\};$$
+    y si $A = \varnothing$ o $B = \varnothing$, se define $A \times B = \varnothing$. La expresión $A \times B$ se lee: $A$ cruz $B$ o el producto cartesiano de $A$ y $B$.
+\end{definicion}
+
+Observemos que:
+\begin{enumerate}
+    \item $(a, b) \in A \times B \Longleftrightarrow a \in A$ y $b \in B$.
+    \item $x \in A \times B \Longleftrightarrow \exists a \in A$ y $\exists b \in B$ tales que $x = (a, b)$.
+    \item $(a, b) \notin A \times B \Longleftrightarrow a \notin A$ o $b \notin B$.
+\end{enumerate}
+
+\begin{examplebox}{}{}
+    Si $A = \{0, 1, 2\}$ y $B = \{2, 3\}$, entonces
+    $$A \times B = \left\{(0, 2), (0, 3), (1, 2), (1, 3), (2, 2), (2, 3)\right\}$$
+    y
+    $$B \times A = \left\{(2, 0), (2, 1), (2, 2), (3, 0), (3, 1), (3, 2)\right\}.$$
+\end{examplebox}
+
+Del ejemplo anterior se sigue que, en general,
+$$A \times B \neq B \times A.$$
+Esto significa que el producto cartesiano de dos conjuntos no es conmutativo. En otras palabras, el orden en el que se toman los conjuntos importa.
+
+\begin{prop}{}{}
+    Si $A$, $B$, $C$ y $D$ son conjuntos no vacíos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A \times B=B \times A \Longleftrightarrow A=B$.
+        \item $A \subset C$ y $B \subset D \Longleftrightarrow A \times B \subset C \times D$.
+        \item $A \times(B \cup C)=(A \times B) \cup(A \times C)$.
+        \item $(A \cup B) \times C=(A \times C) \cup(B \times C)$.
+        \item $A \times(B \cap C)=(A \times B) \cap(A \times C)$.
+        \item $(A \cap B) \times C=(A \times C) \cap(B \times C)$.
+        \item $A \times(B-C)=(A \times B)-(A \times C)$.
+        \item $(A-B) \times C=(A \times C)-(B \times C)$.
+    \end{enumerate}
+    \tcblower
+    \demostracion Probaremos los incisos (ii) y (iii), los otros se dejan como ejercicio al lector.
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt,start=2]
+        \item
+        \begin{enumerate}[label=\alph*)]
+            \item Supongamos que $A \subset C$ y $B \subset D$: $(a, b) \in A \times B \Longrightarrow a \in A$ y $b \in B \Longrightarrow$ (por hipótesis) $a \in C$ y $b \in D \Longrightarrow(a, b) \in C \times D$. En consecuencia, $A \times B \subset C \times D$.
+            \item Supongamos ahora que $A \times B \subset C \times D$: $a \in A$ y $b \in B \Longrightarrow$ $(a, b) \in A \times B \Longrightarrow$ (por hipótesis) $(a, b) \in C \times D \Longrightarrow a \in C$ y $b \in D$. En consecuencia, $A \subset C$ y $B \subset D$.
+        \end{enumerate}
+        \item $(a, b) \in A \times(B \cup C) \Longleftrightarrow a \in A$ y $b \in (B \cup C) \Longleftrightarrow a \in A$ y $(b \in B$ o $b \in C) \Longleftrightarrow(a \in A$ y $b \in B)$ o $(a \in A$ y $b \in C)$ $\Longleftrightarrow (a, b) \in A \times B$ o $(a, b) \in A \times C \Longleftrightarrow (a, b) \in(A \times B) \cup(A \times C)$.
+    \end{enumerate}
+\end{prop}
+
+\newpage
+
+\begin{definicion}{}{}
+    Sean $A_1, A_2, \dots, A_n$ conjuntos no vacíos. Sean $a_1 \in A_1$, $a_2 \in A_2$, $\dots$, $a_n \in A_n$. Definimos la $n$-ada ordenada, con $n \geq 3$, como
+    $$(a_1, a_2, \dots, a_n) = \big((a_1, a_2, \dots, a_{n-1}),  a_n\big).$$
+    Al elemento $a_k$, donde $k \in \{1, 2, \dots, n\}$, se le llama la $k$-ésima entrada, o $k$-ésima coordenada, de la $n$-ada $(a_1, a_2, \dots, a_n)$.
+\end{definicion}
+
+Observemos que por definición $(a_1, a_2, a_3) = \big((a_1, a_2), a_3\big)$.
+
+\begin{prop}{}{}
+    Sean $A_0, A_1, \dots, A_n$ conjuntos no vacíos; y sean $a_i$, $b_i \in A_i$, $\forall i = 0, 1, \dots, n$. Entonces
+    $$(a_0, a_1, \dots,  a_n) = (b_0,  b_1,  \dots,  b_n) \Longleftrightarrow a_i = b_i, \forall i = 0, 1, \dots, n.$$
+    \tcblower
+    \demostracion Procederemos por inducción sobre $n$.
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Si $n = 1$, por el teorema \ref{theorem:1.8.3}, se sabe que
+        $$(a_0, a_1) = (b_0, b_1) \Longleftrightarrow a_0 = b_0 \text{ y } a_1 = b_1,$$
+        con lo que se tiene lo deseado.
+        \item Suponemos el resultado cierto para $n = k$, es decir, suponemos que
+        $$(a_0, a_1, \dots,  a_k) = (b_0, b_1, \dots, b_k) \Longleftrightarrow a_i = b_i,  \forall i = 0, 1, \dots, k.$$
+        \item Probaremos, a partir de (ii), que el resultado es cierto para $n = k+1$, entonces
+        $$(a_0, a_1, \dots, a_k,  a_{k+1}) = (b_0, b_1, \dots, b_k,  b_{k+1}),$$
+        si y solo si
+        $$\big( (a_0, a_1, \dots, a_k),  a_{k+1}\big) = \big( (b_0, b_1, \dots, b_k), b_{k+1}\big),$$
+        si y solo si
+        $$(a_0, a_1, \dots, a_k) = (b_0, b_1, \dots, b_k) \text{ y } a_{k+1} = b_{k+1},$$
+        si y solo si $a_i = b_i$, $\forall i=0, 1, \dots, k \text{ y } a_{k+1} = b_{k+1}$.
+    \end{enumerate}
+\end{prop}
+
+\begin{definicion}{}{}
+    Sean $A_1, A_2, \dots, A_n$ conjuntos.
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Si $A_i \neq \varnothing$, $\forall i = 1, 2, \dots, n$, entonces se define el producto cartesiano de $A_1, A_2, \dots, A_n$, denotado por $A_1 \times A_2 \times \dots \times A_n$, como el conjunto
+        $$A_1 \times A_2 \times \cdots \times A_n = \left\{(a_1, a_2, \dots, a_n) \mid a_i \in A_i,  \forall i = 1, \dots, n\right\}.$$
+        \item Si $A_i = \varnothing$, para algún $i=1, 2, \dots, n$, se define
+        $$A_1 \times A_2 \times \cdots \times A_n = \varnothing.$$
+    \end{enumerate}
+\end{definicion}
+
+\begin{definicion}{}{}
+    Si $A$ es un conjunto y $n \in \NN$, definimos $A^n$ como
+    $$A^n = \underbrace{A \times A \times \cdots \times A}_{n \text{ veces}}.$$
+\end{definicion}
+
+\begin{examplebox}{}{}
+    $A^2=A \times A$ y $A^3=A \times A \times A$.
+\end{examplebox}
+
+\newpage
+
+\section{Representación geométrica del producto cartesiano}
+
+Sean $X$ y $Y$ conjuntos, digamos que
+$$X = \{a, b, c, \dots\}$$
+y
+$$Y = \{\alpha, \beta, \dots\}.$$
+Geométricamente
+$$X \times Y = \{(a, \alpha), (a, \beta),(b, \alpha), (b, \beta), (c, \alpha), (c, \beta), \dots\}$$
+se representa como sigue:
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+        \draw[thick,black,arrows = {-Stealth[scale width=1]}] (-3,0) -- (5,0) node[right] {$X$};
+        \draw[thick,black,arrows = {-Stealth[scale width=1]}] (0,-3) -- (0,3) node[above] {$Y$};
+        \draw[dash pattern=on 3pt off 3pt] (-2,-2) rectangle (4,2);
+        \draw[dash pattern=on 3pt off 3pt] (2,-2) -- (2,2);
+    
+        \filldraw (-2,2) circle (2pt) node[above] {$(a,  \alpha)$}; 
+        \filldraw (2,2) circle (2pt) node[above] {$(b,  \alpha)$}; 
+        \filldraw (4,2) circle (2pt) node[above] {$(c,  \alpha)$}; 
+    
+        \filldraw (-2,-2) circle (2pt) node[below] {$(a,  \beta)$}; 
+        \filldraw (2,-2) circle (2pt) node[below] {$(b,  \beta)$}; 
+        \filldraw (4,-2) circle (2pt) node[below] {$(c,  \beta)$}; 
+    
+        \filldraw (0,2) circle (1pt) node[{above left}] {$\alpha$}; 
+        \filldraw (0,-2) circle (1pt) node[{below left}] {$\beta$}; 
+    
+        \filldraw (-2,0) circle (1pt) node[{below left}] {$a$};
+        \filldraw (2,0) circle (1pt) node[{below left}] {$b$}; 
+        \filldraw (4,0) circle (1pt) node[{below left}] {$c$};
+    \end{tikzpicture}
+    \caption{Diagrama que representa el producto cartesiano $X \times Y$. Los ejes $X$ e $Y$ están etiquetados, y las líneas punteadas delimitan las regiones donde se encuentran los puntos. Los puntos $(a, \alpha)$, $(b, \alpha)$, $(c, \alpha)$, $(a, \beta)$, $(b, \beta)$ y $(c, \beta)$ están marcados, mostrando las combinaciones posibles de elementos de $X$ y $Y$.}
+\end{figure}
+
+Si $A \subset X$ y $B \subset Y$, geométricamente $A \times B$ se representa como sigue:
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+        \draw[thick,black,arrows = {-Stealth[scale width=1]}] (-1,0) -- (8,0) node[right] {$X$};
+        \draw[thick,black,arrows = {-Stealth[scale width=1]}] (0,-1) -- (0,5) node[above] {$Y$};
+        
+        \draw (2,1) rectangle (6,3);
+        
+        \node at (4,2) {$A \times B$};
+        
+        \draw[cw0,line width=3pt] (2,0) -- (6,0);
+        \draw[cw0,line width=3pt] (0,1) -- (0,3);
+        
+        \draw[dash pattern=on 3pt off 3pt] (0,1) -- (2,1);
+        \draw[dash pattern=on 3pt off 3pt] (0,3) -- (2,3);
+        
+        \draw[dash pattern=on 3pt off 3pt] (2,0) -- (2,1);
+        \draw[dash pattern=on 3pt off 3pt] (6,0) -- (6,1);
+        
+        \node at (4,0) [below] {$A$};
+        \node at (0,2) [left] {$B$};
+    \end{tikzpicture}
+    \caption{Diagrama que representa el producto cartesiano $A \times B$. Los ejes $X$ e $Y$ están etiquetados, y el rectángulo sombreado representa el conjunto $A \times B$. Las líneas gruesas en los ejes indican los intervalos correspondientes a los conjuntos $A$ y $B$. Las líneas punteadas muestran las proyecciones de los límites del rectángulo sobre los ejes.}
+\end{figure}
+
+\section{Familias de conjuntos}
+
+Si $I$ es un conjunto no vacío y cada $\alpha \in I$ tiene asignado un conjunto $A_\alpha$, entonces la colección de conjuntos $\{A_\alpha \mid \alpha \in I\}$ se llama familia de conjuntos, e $I$ se llama conjunto de índices para la familia. No se requiere que conjuntos con índices diferentes, sean diferentes. Observemos que cualquier conjunto $\mathcal{F}$ cuyos elementos son conjuntos, puede ser convertido en una familia de conjuntos, por autoindización, esto es, se usa a $\mathcal{F}$ mismo como un conjunto de índices, y se asigna a cada miembro de $\mathcal{F}$ el conjunto que representa.
+
+\newpage
+
+\begin{definicion}{}{}
+    Sea
+    $$\mathcal{F} = \{A_\alpha \mid \alpha \in I\}$$
+    una familia de conjuntos.
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Definimos la unión de la familia $\mathcal{F}$, misma que denotamos por
+        $$\cup \mathcal{F} = \cup \{A_\alpha \mid \alpha \in I\}$$
+        o por $\displaystyle \bigcup_{\alpha \in I} A_\alpha$, como el conjunto
+        $$\bigcup_{\alpha \in I} A_\alpha = \left\{x \mid x \in A_\alpha, \text{ para algún } \alpha \in I\right\}$$
+        \item Definimos la intersección de la familia $\mathcal{F}$, que se denota por
+        $$\cap \mathcal{F} = \cap \{A_\alpha \mid \alpha \in I\}$$
+        o por $\displaystyle \bigcap_{\alpha \in I} A_\alpha$, como el conjunto
+        $$\bigcap_{\alpha \in I} A_\alpha = \left\{x \mid x \in A_\alpha, \forall \alpha \in I\right\}.$$
+    \end{enumerate}
+\end{definicion}
+
+En lugar de $\displaystyle \bigcup_{\alpha \in I} A_\alpha$, también se escribe $\displaystyle \bigcup_\alpha A_\alpha$. Análogamente, en lugar de $\displaystyle \bigcap_{\alpha \in I} A_\alpha$, también se escribe $\displaystyle \bigcap_\alpha A_\alpha$.
+
+\begin{examplebox}{}{}
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Para cualquier conjunto $X$, $X = \displaystyle \bigcup_{x \in X}\{x\}$.
+        \item Para cada $k \in \NN$, sea $A_k = \{n \mid n \in \NN \text{ y } n \geq k\}$. Nótese que tenemos $A_1 \supset A_2 \supset A_3 \dots$. Claramente $\displaystyle \bigcup_{k \in \mathbb{N}} A_k = A_1$ y $\displaystyle \bigcap_{k \in \NN} A_k = \phi$.
+        \item Para cada $n \in \NN$, sean
+        $$A_n=\left[0, 1, -\frac{1}{2^n} \right] \quad \text{ y } \quad B_n=\left[0, 1, -\frac{1}{3^n} \right].$$
+        Obsérvese que $A_n \subset B_n$, $\forall n \in \NN$, y que $A_n \neq B_m$, $\forall n \in \NN$ y $\forall m \in \NN$. Sin embargo,
+        $$\bigcup_{n \in \NN}A_n = [0, 1) \quad \text{ y } \quad \bigcap_{n \in \NN}B_n = [0, 1).$$
+    \end{enumerate}
+\end{examplebox}
+
+\begin{theorem}{}{}
+    Si $\mathcal{F} = \{A_\alpha \mid \alpha \in I\}$ y $\mathcal{G} = \{B_\beta \mid \beta \in J\}$ son familias de conjuntos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $\displaystyle \left(\bigcup_{\alpha \in I} A_\alpha\right) \cap \left(\bigcup_{\beta \in J} B_\beta\right)=\bigcup_{(\alpha,  \beta) \in I \times J} \left(A_\alpha \cap B_\beta\right)$.
+        \item $\displaystyle \left(\bigcap_{\alpha \in I} A_\alpha\right) \cup \left(\bigcap_{\beta \in J} B_\beta\right)=\bigcap_{(\alpha,  \beta) \in I \times J}\left(A_\alpha \cup B_\beta\right)$.
+        \item $\displaystyle \left(\bigcup_{\alpha \in I} A_\alpha\right) \times \left(\bigcup_{\beta \in J} B_\beta\right)=\bigcup_{(\alpha,  \beta) \in I \times J} \left(A_\alpha \times B_\beta\right)$.
+        \item $\displaystyle \left(\bigcap_{\alpha \in I} A_\alpha\right) \times \left(\bigcap_{\beta \in J} B_\beta\right)=\bigcap_{(\alpha,  \beta) \in I \times J}\left(A_\alpha \times B_\beta\right)$.
+    \end{enumerate}
+    \tcblower
+    \demostracion Se deja como ejercicio al lector.
+\end{theorem}
+
+\newpage
+
+\begin{theorem}{}{}
+    Si $\mathcal{F} = \{A_\alpha \mid \alpha \in I\}$ es una familia de subconjuntos de un conjunto universal $X$, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $\displaystyle \left(\bigcup_{\alpha \in I} A_\alpha\right)^C = \bigcap_{\alpha \in I} A_\alpha^C$.
+        \item $\displaystyle \left(\bigcap_{\alpha \in I} A_\alpha\right)^C = \bigcup_{\alpha \in I} A_\alpha^C$.
+    \end{enumerate}
+    \tcblower
+    \demostracion Se deja como ejercicio al lector.
+\end{theorem}
+
+\section{Conjunto potencia}
+
+\begin{definicion}{}{}
+    Sea $A$ un conjunto. Se define el conjunto potencia de $A$, denotado por $\wp(A)$ o por $2^A$, como el conjunto
+    $$\wp(A) = \{B \mid B \subset A\}.$$
+\end{definicion}
+
+Observemos que
+\begin{enumerate}
+    \item Por definición, $B \subset A \Longleftrightarrow B \in \wp(A)$.
+    \item Para cualquier conjunto $A$, se cumple que $\varnothing \in \wp(A)$ y $A \in \wp(A)$.
+    \item $a \in A \Longleftrightarrow \{a\} \in \wp(A)$.
+\end{enumerate}
+
+\begin{examplebox}{}{}
+    Si $A = \{0, 1\}$, entonces
+    $$\wp(A) = \big\{\varnothing, \{0\}, \{1\}, A \big\}.$$
+\end{examplebox}
+
+\begin{theorem}{}{}
+    Si $X$ y $Y$ son conjuntos, entonces
+    $$X \subset Y \Longleftrightarrow \wp(X) \subset \wp(Y).$$
+    \tcblower
+    \demostracion Procedamos por casos.
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Probemos primero que $X \subset Y \Longrightarrow \wp(X) \subset$ $\wp(Y)$: Si $A \in \wp(X)$, entonces $A \subset X$, y como por hipótesis $X \subset Y$, entonces $A \subset Y$, entonces $A \in \wp(Y)$.
+        \item Ahora probaremos que $\wp(X) \subset \wp(Y) \Longrightarrow X \subset Y$: Si $x \in X$, entonces $\{x\} \in \wp(X)$, y como por hipótesis $\wp(X) \subset \wp(Y)$, entonces $\{x\} \in \wp(Y)$, entonces $x \in Y$.
+    \end{enumerate}
+\end{theorem}

@@ -1,0 +1,970 @@
+\chapter{PROBABILIDAD}
+\printchaptertableofcontents
+
+En el estudio de la estadística tratamos básicamente con la presentación e interpretación de resultados fortuitos que ocurren en un estudio planeado o en una investigación científica. Por ejemplo, en México, y con la finalidad de justificar la instalación de un semáforo, se podría registrar el número de accidentes que ocurren mensualmente en la intersección de Eje 1 Norte y Avenida Insurgentes. En una fábrica, se podrían clasificar los artículos que salen de la línea de ensamble como “defectuosos” o “no defectuosos”. En una reacción química, se podría revisar el volumen de gas que se libera cuando se varía la concentración de un ácido. Por ello, quienes se dedican a la estadística a menudo manejan datos numéricos que representan conteos o mediciones, o datos categóricos que se podrían clasificar de acuerdo con algún criterio.
+
+En este capítulo, al referirnos a cualquier registro de información, ya sea numérico o categórico, utilizaremos el término \emph{observación}. Por consiguiente, los números 2, 0, 1 y 2, que representan el número de accidentes que ocurrieron cada mes, de enero a abril, durante el año pasado en la intersección de Avenida Insurgentes y Eje 1 Norte, constituyen un conjunto de observaciones. Lo mismo ocurre con los datos categóricos N, D, N, N y D, que representan los artículos defectuosos o no defectuosos cuando se inspeccionan cinco artículos y se registran como observaciones.
+
+Los estadísticos utilizan la palabra \emph{experimento} para describir cualquier proceso que genere un conjunto de datos. Un ejemplo simple de experimento estadístico es el lanzamiento de una moneda al aire. En tal experimento, sólo hay dos resultados posibles: sol o águila. En estadística, nos interesan, en particular, las observaciones que se obtienen al repetir varias veces un experimento. En la mayoría de los casos, los resultados dependerán del azar, por lo tanto, no se pueden predecir con certeza. Si un químico realizara un análisis varias veces en las mismas condiciones, obtendría diferentes medidas, las cuales indicarían un elemento de probabilidad en el procedimiento experimental. Aun cuando lancemos una moneda al aire repetidas veces, no podemos tener la certeza de que en un lanzamiento determinado obtendremos águila como resultado. Sin embargo, podemos conocer el conjunto completo de posibilidades para cada lanzamiento.
+
+\section{Espacio de sucesos}
+
+\begin{definicion}{}{}
+    Al conjunto de todos los resultados posibles de un experimento se le llama \emph{espacio de sucesos} y se representa con el símbolo $\Omega$.
+\end{definicion}
+
+A cada suceso en un espacio de sucesos se le llama \emph{elemento} o \emph{miembro} del espacio de sucesos. Si el espacio de sucesos tiene un número finito de elementos, podemos listar los miembros separados por comas y encerrarlos entre llaves. Por consiguiente, el espacio de sucesos $\Omega$, de los resultados posibles cuando se lanza una moneda al aire, se puede escribir como
+$$\Omega = \left\{ \text{sol}, \text{águila} \right\} .$$
+\begin{examplebox}{}{primer_ejemplo}
+    Considere el experimento de lanzar un dado. Si nos interesara el número que aparece en la cara superior, el espacio de sucesos sería
+    $$\Omega_1 = \left\{ 1, 2, 3, 4, 5, 6 \right\}.$$
+    Si sólo estuviéramos interesados en si el número es par o impar, el espacio de sucesos sería simplemente
+    $$\Omega_2 = \left\{ \text{par}, \text{impar} \right\}.$$
+\end{examplebox}
+
+El ejemplo anterior ilustra el hecho de que se puede usar más de un espacio de sucesos para describir los resultados de un experimento. En este caso, $\Omega_1$ brinda más información que $\Omega_2$. Si sabemos cuál elemento ocurre en $\Omega_1$, podremos indicar cuál resultado tiene lugar en $\Omega_2$; no obstante, saber lo que pasa en $\Omega_2$ no ayuda mucho a determinar qué elemento ocurre en $\Omega_1$. En general, lo deseable sería utilizar un espacio de sucesos que proporcione la mayor información acerca de los resultados del experimento. En algunos experimentos es útil listar los elementos del espacio de sucesos de forma sistemática utilizando un \emph{diagrama de árbol}.
+
+\begin{examplebox}{}{}
+    Un experimento consiste en lanzar una moneda y después lanzarla una segunda vez si sale sol. Si en el primer lanzamiento sale águila, entonces se lanza un dado una vez. Para listar los elementos del espacio de sucesos que proporciona la mayor información construimos el diagrama de árbol de la figura \ref{fig:diagrama_de_arbol}.
+    \begin{center}
+        \begin{tikzpicture}[grow=right,-latex,>=angle 60]
+            \node {\makecell{Lanzar una \\ moneda}}
+                child {node {\makecell{águila \\ (A)}}
+                    child {node {6}
+                        child[draw=white,-] {node{A6}}
+                    }
+                    child {node {5}
+                        child[draw=white,-] {node{A5}}
+                    }
+                    child {node {4}
+                        child[draw=white,-] {node{A4}}
+                    }
+                    child {node {3}
+                        child[draw=white,-] {node{A3}}
+                    }
+                    child {node {2}
+                        child[draw=white,-] {node{A2}}
+                    }
+                    child {node{1}
+                        child[draw=white,-] {node{A1}}
+                    }
+                }
+                child {node {\makecell{sol \\ (S)}}
+                    child {node{A}
+                        child[draw=white,-] {node{SA}}
+                    }
+                    child {node{S}
+                        child[draw=white,-] {node{SS}}
+                    }
+                };
+            \end{tikzpicture}
+        \captionsetup*[figure]{hypcap=false}
+        \captionof{figure}{Diagrama de árbol}\label{fig:diagrama_de_arbol}
+    \end{center}
+    Si empezamos con la rama superior izquierda y nos movemos a la derecha a lo largo de la primera trayectoria, obtenemos el elemento SS, que indica la posibilidad de que ocurran caras en dos lanzamientos sucesivos de la moneda. De igual manera, el elemento A3 indica la posibilidad de que la moneda muestre un águila seguida por un 3 en el lanzamiento del dado. Al seguir todas las trayectorias, vemos que el espacio de sucesos es
+    $$\Omega = \left\{ \text{SS, SA, A1, A2, A3, A4, A5, A6} \right\} .$$
+\end{examplebox}
+
+\newpage
+
+Muchos de los conceptos de este capítulo se ilustran mejor con ejemplos que involucran el uso de dados y cartas. Es particularmente importante utilizar estas aplicaciones al comenzar el proceso de aprendizaje, ya que facilitan el flujo de esos conceptos nuevos en ejemplos científicos y de ingeniería.
+
+\section{Eventos}
+
+En cualquier experimento dado, podríamos estar interesados en la ocurrencia de ciertos \emph{eventos}, más que en la ocurrencia de un elemento específico en el espacio de sucesos. Por ejemplo, quizás estemos interesados en el evento $A$, en el cual el resultado de lanzar un dado es divisible entre 3. Esto ocurrirá si el resultado es un elemento del subconjunto $A = \{3, 6\}$ del espacio de sucesos $\Omega_1$ del ejemplo \ref{examplebox:primer_ejemplo}.
+
+Para cada evento asignamos un conjunto de elementos, que constituye un
+subconjunto del espacio de sucesos. Este subconjunto representa la totalidad de los elementos para los que el evento es cierto.
+
+\begin{definicion}{}{}
+    Un \emph{evento} es un subconjunto de un espacio de sucesos.
+\end{definicion}
+
+\begin{examplebox}{}{}
+    Dado el espacio de sucesos $\Omega = \{t \mid t \geq 0\}$, donde $t$ es la vida en años de cierto componente electrónico, el evento $A$ de que el componente falle antes de que finalice el quinto año es el subconjunto $A = \{t \mid 0 \leq t < 5\}$.
+\end{examplebox}
+
+Es posible concebir que un evento puede ser un subconjunto que incluye todo el espacio de sucesos $\Omega$, o un subconjunto de $\Omega$ que se denomina conjunto vacío y se denota con el símbolo $\varnothing$, que no contiene ningún elemento. Por ejemplo, si en un experimento biológico permitimos que $A$ sea el evento de detectar un organismo microscópico a simple vista, entonces $A = \varnothing$. También, si
+$$B = \left\{ x \mid x \text{ es un factor par de } 7 \right\},$$
+entonces $B$ debe ser el conjunto vacío, pues los únicos factores posibles de 7 son los números nones 1 y 7.
+
+Considere un experimento en el que se registran los hábitos de tabaquismo de los empleados de una empresa industrial. Un posible espacio de suceso podría clasificar a un individuo como no fumador, fumador ocasional, fumador moderado o fumador empedernido. Si se determina que el subconjunto de los fumadores sea un evento, entonces la totalidad de los no fumadores corresponderá a un evento diferente, también subconjunto de $\Omega$, que se denomina complemento del conjunto de fumadores.
+
+\begin{definicion}{}{}
+    El complemento de un evento $A$ respecto de $\Omega$ es el subconjunto de todos los elementos de $\Omega$ que no están en $A$. Denotamos el complemento de $A$ mediante el símbolo $A^C$.
+\end{definicion}
+
+\begin{examplebox}{}{}
+    Sea $R$ el evento de que se seleccione una carta roja de una baraja ordinaria de 52 cartas, y sea $\Omega$ toda la baraja. Entonces $R^C$ es el evento de que la carta seleccionada de la baraja no sea una roja sino una negra.
+\end{examplebox}
+
+\begin{definicion}{}{}
+    La intersección de dos eventos $A$ y $B$, que se denota con el símbolo $A \cap B$, es el evento que contiene todos los elementos que son comunes entre $A$ y $B$.
+\end{definicion}
+
+\begin{examplebox}{}{}
+    Sea $E$ el evento de que una persona seleccionada al azar en un salón de clases sea estudiante de ingeniería, y sea $F$ el evento de que la persona sea mujer. Entonces $E \cap F$ es el evento de todas las estudiantes mujeres de ingeniería en el salón de clases.
+\end{examplebox}
+
+\newpage
+
+\begin{examplebox}{}{}
+    Sean $V = \{ a, e, i, o, u \}$ y $C = \{l, r, s, t \}$; entonces, se deduce que $V \cap C = \varnothing$. Es decir, $V$ y $C$ no tienen elementos comunes, por lo tanto, no pueden ocurrir de forma simultánea.
+\end{examplebox}
+
+Para ciertos experimentos estadísticos no es nada extraño definir dos eventos, $A$ y $B$, que no pueden ocurrir de forma simultánea. Se dice entonces que los eventos $A$ y $B$ son mutuamente excluyentes. Expresado de manera más formal, tenemos la siguiente definición:
+\begin{definicion}{}{}
+    Dos eventos $A$ y $B$ son mutuamente excluyentes o disjuntos si $A \cap B = \varnothing$; es decir, si $A$ y $B$ no tienen elementos en común.
+\end{definicion}
+
+A menudo nos interesamos en la ocurrencia de al menos uno de dos eventos asociados con un experimento. Por consiguiente, en el experimento del lanzamiento de un dado, si
+$$A = \{ 2, 4, 6 \} \quad \text{ y } \quad B = \{ 4, 5, 6 \},$$
+podríamos estar interesados en que ocurran $A$ o $B$, o en que ocurran tanto $A$ como $B$. Tal evento, que se llama unión de $A$ y $B$, ocurrirá si el resultado es un elemento del subconjunto $\{2, 4, 5, 6\}$.
+
+\begin{definicion}{}{}
+    La unión de dos eventos $A$ y $B$, que se denota con el símbolo $A \cup B$, es el evento que contiene todos los elementos que pertenecen a $A$ o a $B$, o a ambos.
+\end{definicion}
+
+\begin{examplebox}{}{}
+    Sea $P$ el evento de que un empleado de una empresa petrolera seleccionado al azar fume cigarrillos. Sea $Q$ el evento de que el empleado seleccionado ingiera bebidas alcohólicas. Entonces, el evento $P \cup Q$ es el conjunto de todos los empleados que beben o fuman, o que hacen ambas cosas.
+\end{examplebox}
+
+\section{Probabilidad de un evento}
+
+Quizá fue la insaciable sed del ser humano por el juego lo que condujo al desarrollo temprano de la teoría de la probabilidad. En un esfuerzo por aumentar sus triunfos, algunos pidieron a los matemáticos que les proporcionaran las estrategias óptimas para los diversos juegos de azar. Algunos de los matemáticos que brindaron tales estrategias fueron Pascal, Leibniz, Fermat y James Bernoulli. Como resultado de este desarrollo inicial de la teoría de la probabilidad, la inferencia estadística, con todas sus predicciones y generalizaciones, ha rebasado el ámbito de los juegos de azar para abarcar muchos otros campos asociados con los eventos aleatorios, como la política, los negocios, el pronóstico del clima y la investigación científica. Para que estas predicciones y generalizaciones sean razonablemente precisas, resulta esencial la comprensión de la teoría básica de la probabilidad.
+
+En el resto de este capítulo consideraremos sólo aquellos experimentos para los cuales el espacio de sucesos contiene un número finito de elementos. La probabilidad de la ocurrencia de un evento que resulta de tal experimento estadístico se evalúa utilizando un conjunto de números reales denominados \emph{probabilidades}, que van de 0 a 1. Para todo elemento en el espacio de sucesos asignamos una probabilidad tal que la suma de todas las probabilidades es 1. Si tenemos razón para creer que al llevar a cabo el experimento es bastante probable que ocurra cierto elemento, le tendríamos que asignar a éste una probabilidad cercana a 1. Por el contrario, si creemos que no hay probabilidades de que ocurra cierto elemento, le tendríamos que asignar a éste una probabilidad cercana a cero. En muchos experimentos, como lanzar una moneda o un dado, todos los elementos tienen la misma oportunidad de ocurrencia, por lo tanto, se les asignan probabilidades iguales. A los elementos fuera del espacio de sucesos, es decir, a los eventos simples que no tienen posibilidades de ocurrir, les asignamos una probabilidad de cero.
+
+\newpage
+
+Para encontrar la probabilidad de un evento $A$ sumamos todas las probabilidades que se asignan a los elementos en $A$. Esta suma se denomina probabilidad de $A$
+y se denota con $P(A)$.
+
+Para medir la probabilidad de que ocurra un evento específico, necesitamos una herramienta matemática que nos permita cuantificar esta incertidumbre. Aquí es donde entra en juego la \emph{función de probabilidad}. Esta función nos proporciona una manera sistemática de asignar un valor numérico a la probabilidad de cada posible resultado de un experimento aleatorio. En términos simples, la función de probabilidad nos ayuda a medir cuán probable es que ocurra un evento dado.
+
+\begin{definicion}{}{def_func_prob}
+    Sea $\Omega$ un espacio de sucesos y $\wp(\Omega)$ el conjunto potencia de $\Omega$. Definimos la función de probabilidad $P: \wp(\Omega) \longrightarrow [0, 1]$, tal que cumple los siguientes tres axiomas:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Para cualquier evento $A$, se tiene que $P(A) \geq 0$.
+        \item La suma de las probabilidades de todos los sucesos posibles debe ser igual a 1, es decir, $P(\Omega) = 1$.
+        \item Si $A_1, A_2, A_3, \dots$ son sucesos disjuntos, $\displaystyle P\left( \bigcup_{i = 1}^{\infty} A_i \right) = \sum_{i = 1}^{\infty} P(A_i)$.
+    \end{enumerate}
+\end{definicion}
+
+Observemos que la probabilidad del conjunto vacío $\varnothing$ es igual a 0, es decir, $P(\varnothing) = 0$. Esto se debe a que el conjunto vacío no contiene ningún suceso posible, por lo tanto, la probabilidad de que ocurra un suceso en el conjunto vacío es nula. Si el lector aún no entiende lo anteriormente dicho, esto será mucho más claro con los ejemplos siguientes y cuando presentemos la definición \ref{definicion:probabilidadnN}.
+
+\begin{examplebox}{}{}
+    Una moneda se lanza dos veces. ¿Cuál es la probabilidad de que salga al menos un sol (S)?
+    \tcblower
+    \solucion El espacio de sucesos para este experimento es
+    $$\Omega = \{ \text{SS, SA, AS, AA} \}.$$
+    Si la moneda está balanceada, cada uno de estos resultados tendrá las mismas probabilidades de ocurrir. Por lo tanto, asignamos una probabilidad de $\omega$ a cada uno de los elementos. Entonces, $4\omega = 1$ o $\omega = 1/4$. Si $A$ representa el evento de que salga al menos un sol (S), entonces
+    $$A = \{ \text{SS, SA, AS} \} \quad \text{ y } \quad P(A) = \frac{1}{4} + \frac{1}{4} + \frac{1}{4} = \frac{3}{4}.$$
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Se carga un dado de forma que exista el doble de probabilidades de que salga un número par que uno impar. Si $E$ es el evento de que ocurra un número menor que 4 en un solo lanzamiento del dado, calcule $P(E)$.
+    \tcblower
+    \solucion Es claro que el espacio de sucesos es $\Omega = \{1, 2, 3, 4, 5, 6\}$. Asignamos una probabilidad de $\omega$ a cada número impar y una probabilidad de $2\omega$ a cada número par. Como la suma de las probabilidades debe ser 1, tenemos
+    $$\omega + 2\omega + \omega + 2\omega + \omega + 2\omega = 9\omega = 1,$$
+    o bien, $\omega = 1/9$. Por lo tanto, asignamos probabilidades de $1/9$ y $2/9$ a cada número impar y par, respectivamente. Por consiguiente,
+    $$E = \{ 1, 2, 3 \} \quad \text{ y } \quad P(E) = \frac{1}{9} + \frac{2}{9} + \frac{1}{9} = \frac{4}{9}.$$
+\end{examplebox}
+
+\newpage
+
+\begin{examplebox}{}{}
+    En el ejemplo anterior, sea $A$ el evento de que resulte un número par y sea $B$ el evento de que resulte un número divisible entre 3. Calcule $P(A \cup B)$ y $P(A \cap B)$.
+    \tcblower
+    \solucion Es claro que los eventos son $A = \{2, 4, 6\}$ y $B = \{3, 6\}$. Así que tenemos,
+    $$A \cup B = \{ 2, 3, 4, 6 \} \quad \text{ y } \quad A \cap B = \{ 6 \}.$$
+    Al asignar una probabilidad de $1/9$ a cada número impar y de $2/9$ a cada número par, tenemos
+    $$P(A \cup B) = \frac{2}{9} + \frac{1}{9} + \frac{2}{9} + \frac{2}{9} = \frac{7}{9} \quad \text{ y } \quad P(A \cap B) = \frac{2}{9}.$$
+\end{examplebox}
+
+Si el espacio de sucesos para un experimento contiene $N$ elementos, todos los cuales tienen las mismas probabilidades de ocurrir, asignamos una probabilidad igual a $1/N$ a cada uno de los $N$ elementos. La probabilidad de que cualquier evento $A$ contenga $n$ de estos $N$ elementos es entonces el cociente del número de elementos en $A$ y el número de elementos en $\Omega$.
+
+\begin{definicion}{}{probabilidadnN}
+    Si un experimento puede dar como resultado cualquiera de $N$ diferentes resultados que tienen las mismas probabilidades de ocurrir, y si exactamente $n$ de estos resultados corresponden al evento $A$, entonces la probabilidad del evento $A$ es
+    $$P(A) = \frac{n}{N}.$$
+\end{definicion}
+
+\begin{examplebox}{}{}
+    A una clase de estadística para ingenieros asisten 25 estudiantes de ingeniería industrial, 10 de ingeniería mecánica, 10 de ingeniería eléctrica y 8 de ingeniería civil. Si el profesor elige al azar a un estudiante para que conteste una pregunta, ¿qué probabilidades hay de que el elegido sea
+    \begin{enumerate}[label=\alph*), topsep=6pt, itemsep=0pt]
+        \item estudiante de ingeniería industrial,
+        \item estudiante de ingeniería civil o estudiante de ingeniería eléctrica?
+    \end{enumerate}
+    \tcblower
+    \solucion Asignemos las especialidades de los estudiantes de ingeniería industrial, mecánica, eléctrica y civil por las letras $I$, $M$, $E$ y $C$, respectivamente. El grupo está integrado por 53 estudiantes y todos tienen las mismas probabilidades de ser seleccionados.
+    \begin{enumerate}[label=\alph*), topsep=6pt, itemsep=0pt]
+        \item Como 25 de los 53 individuos estudian ingeniería industrial, la probabilidad del evento $I$, es decir, la de elegir al azar a alguien que estudia ingeniería industrial, es
+        $$P(I) = \frac{25}{53}.$$
+        \item Como 18 de los 53 estudiantes son de las especialidades de ingeniería civil o eléctrica, se deduce que
+        $$P(C \cup E) = \frac{18}{53}.$$
+    \end{enumerate}
+\end{examplebox}
+
+\section{Reglas aditivas}
+
+A menudo resulta más sencillo calcular la probabilidad de algún evento a partir de las
+probabilidades conocidas de otros eventos. Esto puede ser cierto si el evento en cuestión se puede representar como la unión de otros dos eventos o como el complemento de algún evento. A continuación se presentan varias leyes importantes que con frecuencia simplifican el cálculo de las probabilidades. La primera, que se denomina \emph{regla aditiva}, se aplica a uniones de eventos.
+
+\newpage
+
+\begin{theorem}{}{probdeunion}
+    Si $A$ y $B$ son dos eventos, entonces
+    $$P(A \cup B) = P(A) + P(B) - P(A \cap B).$$
+    \tcblower
+    \demostracion Consideremos el siguiente diagrama de Venn donde los círculos representan los eventos $A$ y $B$:
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[thick] (-4,-2.75) rectangle (4,2.75) node[below left] {$\Omega$};
+            \filldraw[cw0!70] (-1,0) circle (2cm);
+            \filldraw[cw0!70] (1,0) circle (2cm);
+            \draw[thick,cw0] (-1,0) circle (2cm);
+            \draw[thick,cw0] (1,0) circle (2cm);
+            \node[right, white] at (-2.6,0) {$A$};
+            \node[left, white] at (2.6,0) {$B$};
+            \node[white] at (0,0) {$A \cap B$};
+        \end{tikzpicture}
+        \captionsetup*[figure]{hypcap=false}%
+        \captionof{figure}{Regla aditiva de probabilidad}
+    \end{center}
+    Notemos que $P(A \cup B)$ es la suma de las probabilidades de los elementos en $A ∪ B$. Así, $P(A) + P(B)$ es la suma de todas las probabilidades en $A$ más la suma de todas las probabilidades en $B$. Por lo tanto, sumamos dos veces las probabilidades en $A \cap B$. Como estas probabilidades se suman a $P(A \cap B)$, debemos restar esta probabilidad una vez para obtener la suma de las probabilidades en $A \cup B$.
+\end{theorem}
+
+\begin{corollary}{}{probdeunion_corolario1}
+    Si $A$ y $B$ son mutuamente excluyentes, entonces
+    $$P(A \cup B) = P(A) + P(B).$$
+    \tcblower
+    \demostracion La demostración es inmediata, pues si $A$ y $B$ son mutuamente excluyentes, $A \cap B = \varnothing$ y entonces $P(A \cap B) = P(\varnothing) = 0$.
+\end{corollary}
+
+En general, tenemos el siguiente corolario:
+
+\begin{corollary}{}{probdeunion_corolario2}
+    Si $A_1, A_2, \dots, A_n$ son mutuamente excluyentes, entonces
+    $$P(A_1 \cup A_2 \cup \cdots \cup A_n) = P(A_1) + P(A_2) + \cdots + P(A_n).$$
+\end{corollary}
+
+Un conjunto de eventos $\{A_1, A_2, \dots, A_n\}$ de un espacio de sucesos $\Omega$ se denomina partición de $\Omega$ si $A_1, A_2, \dots, A_n$ son mutuamente excluyentes y
+$$A_1 \cup A_2 \cup \cdots \cup A_n = \Omega.$$
+Por lo tanto, tenemos
+
+\begin{corollary}{}{}
+    Si $A_1, A_2, \dots, A_n$ es una partición de un espacio de sucesos $\Omega$, entonces
+    $$P(A_1 \cup A_2 \cup \cdots \cup A_n) = P(A_1) + P(A_2) + \cdots + P(A_n) = P(\Omega) = 1.$$
+\end{corollary}
+
+Como se esperaría, el teorema \ref{theorem:probdeunion} se extiende de forma análoga.
+
+\begin{theorem}{}{}
+    Para tres eventos $A$, $B$ y $C$,
+    \begin{align*}
+        P(A \cup B \cup C) & = P(A) + P(B) + P(C) - P(A \cap B) \\
+        & \hspace{2cm} - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C).
+    \end{align*}
+\end{theorem}
+
+\newpage
+
+\begin{examplebox}{}{}
+    Al final del semestre John se va a graduar en la facultad de ingeniería industrial de una universidad. Después de tener entrevistas en dos empresas en donde quiere trabajar, determina que la probabilidad que tiene de lograr una oferta de empleo en la empresa $A$ es 0.8, y que la probabilidad de obtenerla en la empresa $B$ es 0.6. Si, por otro lado, considera que la probabilidad de recibir ofertas de ambas empresas es 0.5, ¿qué probabilidad tiene de obtener al menos una oferta de esas dos empresas?
+    \tcblower
+    \solucion Si usamos el teorema \ref{theorem:probdeunion}, entonces
+    $$P(A \cup B) = P(A) + P(B) - P(A \cap B) = 0.8 + 0.6 - 0.5 = 0.9 .$$
+\end{examplebox}
+
+El teorema \ref{theorem:probdeunion} y sus tres corolarios deberían ayudar al lector a comprender mejor la probabilidad y su interpretación. Los corolarios \ref{corollary:probdeunion_corolario1} y \ref{corollary:probdeunion_corolario2} sugieren el resultado muy intuitivo tratando con la probabilidad de que ocurra al menos uno de varios eventos, sin que puedan ocurrir dos de ellos simultáneamente. La probabilidad de que al menos ocurra uno es la suma de las probabilidades de ocurrencia de los eventos individuales. El tercer corolario simplemente establece que el valor mayor de una probabilidad (unidad) se asigna a todo el espacio de sucesos $\Omega$.
+
+\begin{examplebox}{}{}
+    Las probabilidades de que un individuo que compra un automóvil nuevo elija uno de color verde, uno blanco, uno rojo o uno azul son 0.09, 0.15, 0.21 y 0.23, respectivamente, ¿cuál es la probabilidad de que un comprador dado adquiera un automóvil nuevo que tenga uno de esos colores?
+    \tcblower
+    \solucion Sean $V$, $B$, $R$ y $A$ los eventos de que un comprador seleccione, respectivamente, un automóvil verde, blanco, rojo o azul. Como estos cuatro eventos son mutuamente excluyentes, la probabilidad es
+    \begin{align*}
+        P(V \cup B \cup R \cup A) & = P(V) + P(B) + P(R) + P(A) \\
+        & = 0.09 + 0.15 + 0.21 + 0.23 \\
+        & = 0.68.
+    \end{align*}
+\end{examplebox}
+
+A menudo es más difícil calcular la probabilidad de que ocurra un evento que calcular la probabilidad de que el evento no ocurra. Si éste es el caso para algún evento $A$, simplemente calculamos primero $P\left(A^C\right)$ y, después, mediante el teorema \ref{theorem:probdeunion}, calculamos $P(A)$ por sustracción.
+
+\begin{theorem}{}{probAyAcomplemento}
+    Si $A$ y $A^C$ son eventos complementarios, entonces
+    $$P(A) + P\left(A^C\right) = 1.$$
+    \tcblower
+    \demostracion Puesto que los conjuntos $A$ y $A^C$ son disjuntos y $A \cup A^C = \Omega$, entonces
+    $$1 = P(\Omega) = P\left(A \cup A^C\right) = P(A) + P\left(A^C\right).$$
+\end{theorem}
+
+\begin{examplebox}{}{}
+    Si las probabilidades de que un mecánico automotriz dé servicio a 3, 4, 5, 6, 7, 8 o más vehículos en un día de trabajo dado son 0.12, 0.19, 0.28, 0.24, 0.10 y 0.07, respectivamente, ¿cuál es la probabilidad de que dé servicio al menos a 5 vehículos el siguiente día de trabajo?
+    \tcblower
+    \solucion Sea $E$ el evento de que al menos 5 automóviles reciban servicio. Ahora bien, $P(E) = 1 - P\left(E^C\right)$, donde $E^C$ es el evento de que menos de 5 automóviles reciban servicio. Como $P\left(E^C\right) = 0.12 + 0.19 = 0.31$,
+    del teorema anterior se deduce que
+    $$P(E) = 1 - 0.31 = 0.69.$$
+\end{examplebox}
+
+\newpage
+
+\begin{theorem}{}{}
+    Para cualquier evento $A$, se tiene que 
+    $$0 \leq P(A) \leq 1.$$
+    \tcblower
+    \demostracion Se sabe por el axioma 1 de la definición \ref{definicion:def_func_prob} que $P(A) \geq 0$. Si $P(A) > 1$, entonces por el teorema \ref{theorem:probAyAcomplemento} resulta que $P\left(A^C\right) < 0$. Puesto que este resultado contradice el axioma 1 de la definición \ref{definicion:def_func_prob}, que afirma que la probabilidad de todo evento debe ser no negativa, debe ser cierto que $P(A) \leq 1$.
+\end{theorem}
+
+\begin{theorem}{}{}
+    Sean $A$ y $B$ dos eventos. Si $A \subset B$, entonces
+    $$P(A) \leq P(B).$$
+    \tcblower
+    \demostracion Consideremos el siguiente diagrama de Venn donde los círculos representan los eventos $A$ y $B$:
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[thick] (-4,-2.75) rectangle (4,2.75) node[below left] {$\Omega$};
+            \filldraw[cw0!70] (0,0) circle (2cm);
+            \draw[thick,cw0] (0,0) circle (2cm);
+            \filldraw[white] (-0.5,-0.5) circle (1.25cm);
+            \draw[thick,cw0] (-0.5,-0.5) circle (1.25cm);
+            \node at (-0.5,-0.5) {$A$};
+            \node[white] at (0.85,0.85) {$B \cap A^C$};
+            \node at (1.65,1.65) {$B$};
+        \end{tikzpicture}
+        \captionsetup*[figure]{hypcap=false}%
+        \captionof{figure}{$B = A \cup \left( B \cap A^C \right)$}
+    \end{center}
+    Como se ilustra en la figura anterior, el evento $B$ puede ser tratado como la unión de los dos eventos disjuntos $A$ y $B \cap A^C$. Por tanto,
+    $$P(B) = P(A) + P\left(B \cap A^C\right).$$
+    Puesto que $P\left(B \cap A^C\right) \geq 0$, entonces $P(B) \geq P(A)$.
+\end{theorem}
+
+\section{Probabilidad condicional e independencia}
+
+Un concepto muy importante en la teoría de probabilidad es la probabilidad condicional. En algunas aplicaciones el profesional se interesa por la estructura de probabilidad bajo ciertas restricciones. Por ejemplo, en epidemiología, en lugar de estudiar las probabilidades de que una persona de la población general tenga diabetes, podría ser más interesante conocer esta probabilidad en un grupo distinto, como el de las mujeres asiáticas cuya edad está en el rango de 35 a 50 años, o como el de los hombres hispanos cuya edad está entre los 40 y los 60 años. A este tipo de probabilidad se le conoce como probabilidad condicional.
+
+\subsection*{Probabilidad condicional}
+
+La probabilidad de que ocurra un evento $A$ cuando se sabe que ya ocurrió algún evento $B$ se llama probabilidad condicional y se denota con $P(A \mid B)$. El símbolo $P(A \mid B)$ por lo general se lee como “la probabilidad de que ocurra $A$, dado que ocurrió $B$”, o simplemente, “la probabilidad de $A$, dado $B$”.
+
+\newpage
+\label{pagdeeventodados}
+Considere el evento $A$ de obtener un cuadrado perfecto cuando se lanza un dado. El dado se construye de modo que los números pares tengan el doble de probabilidad de ocurrencia que los números nones. Con base en el espacio de sucesos $\Omega = \{1, 2, 3, 4, 5, 6\}$, en el que a los números impares y a los pares se les asignaron probabilidades de $1/9$ y $2/9$, respectivamente, la probabilidad de que ocurra $A$ es de $1/3$. Suponga ahora que se sabe que el lanzamiento del dado tiene como resultado un número mayor que 3. Tenemos ahora un espacio de sucesos reducido, $B = \{4, 5, 6\}$, que es un subconjunto de $\Omega$. Para encontrar la probabilidad de que ocurra $A$, en relación con el espacio de sucesos $B$, debemos comenzar por asignar nuevas probabilidades a los elementos de $B$, que sean proporcionales a sus probabilidades originales de modo que su suma sea 1. Al asignar una probabilidad de $\omega$ al número non en $B$ y una probabilidad de $2\omega$ a los dos números pares, tenemos $5\omega = 1$ o $\omega = 1/5$. En relación con el espacio $B$, encontramos que $A$ contiene sólo el elemento 4. Si denotamos este evento con el símbolo $A \mid B$, escribimos $A \mid B = \{4\}$ y, en consecuencia,
+$$P(A \mid B) = \frac{2}{5}.$$
+Este ejemplo ilustra que los eventos pueden tener probabilidades diferentes cuando se
+consideran en relación con diferentes espacios de sucesos.
+
+También podemos escribir
+$$P(A \mid B) = \frac{2}{5} = \frac{\dfrac{2}{9}}{\dfrac{5}{9}} = \frac{P(A \cap B)}{P(B)},$$
+donde $P(A \cap B)$ y $P(B)$ se calculan a partir del espacio de sucesos original $\Omega$. En otras palabras, una probabilidad condicional relativa a un subespacio $B$ de $\Omega$ se puede calcular en forma directa de las probabilidades que se asignan a los elementos del espacio de sucesos original $\Omega$.
+
+\begin{definicion}{}{probcondicional}
+    La probabilidad condicional de $A$, dado $B$, que se denota con $P(A \mid B)$, se define como
+    $$P(A \mid B) = \frac{P(B \cap A)}{P(B)} = \frac{P(A \cap B)}{P(B)}, \quad \text{siempre que } P(B) > 0.$$
+\end{definicion}
+
+Un ejemplo más: Suponga que tenemos un espacio de sucesos $\Omega$ constituido por la población de adultos de una pequeña ciudad que cumplen con los requisitos para obtener un título universitario. Debemos clasificarlos de acuerdo con su género y situación laboral. Los datos se presentan en la siguiente tabla.
+\begin{table}[h!]
+    \centering
+    \begin{NiceTabular}{lccc}[cell-space-limits=2pt]
+        \toprule
+        & \textbf{Empleado} & \textbf{Desempleado} & \textbf{Total} \\
+        \midrule
+        Hombre & 460 & \phantom{2}40 & 500 \\
+        Mujer & 140 & 260 & 400 \\
+        \cline{2-4}
+        Total & 600 & 300 & 900 \\
+        \bottomrule
+    \end{NiceTabular}
+    \caption{La clasificación de los adultos de una pequeña ciudad}
+\end{table}
+
+Se seleccionará al azar a uno de estos individuos para que realice un viaje a través del país con el fin de promover las ventajas de establecer industrias nuevas en la ciudad. Nos interesaremos en los eventos siguientes:
+\begin{align*}
+    M: & \text{ se elige a un hombre,} \\
+    E: & \text{ el elegido tiene un empleo}.
+\end{align*}
+Al utilizar el espacio de sucesos reducido $E$, encontramos que
+$$P(M \mid E) = \frac{460}{600} = \frac{23}{30}.$$\newpage\noindent
+Sea $|A|$ el número de elementos en cualquier conjunto $A$. Podemos utilizar esta notación, puesto que cada uno de los adultos tiene las mismas probabilidades de ser elegido, para escribir
+$$P(M \mid E) = \frac{|E \cap M|}{|E|} = \frac{\dfrac{|E \cap M|}{|\Omega|}}{\dfrac{|E|}{|\Omega|}} = \frac{P(E \cap M)}{P(E)},$$
+en donde $P(E \cap M)$ y $P(E)$ se calculan a partir del espacio de sucesos original $\Omega$. Para verificar este resultado observe que
+$$P(E) = \frac{600}{900} = \frac{2}{3} \quad \text{ y } \quad P(E \cap M) = \frac{460}{900} = \frac{23}{45}.$$
+Por lo tanto,
+$$P(M \mid E) = \frac{\dfrac{23}{45}}{\dfrac{2}{3}} = \frac{23}{30},$$
+como antes.
+
+\begin{examplebox}{}{ejemplo_de_vuelo}
+    La probabilidad de que un vuelo programado normalmente salga a tiempo es $P(D) = 0.83$, la probabilidad de que llegue a tiempo es $P(A) = 0.82$ y la probabilidad de que salga y llegue a tiempo es $P(D \cap A) = 0.78$. Calcule la probabilidad de que un avión
+    \begin{enumerate}[label=\alph*), topsep=6pt, itemsep=0pt]
+        \item llegue a tiempo, dado que salió a tiempo;
+        \item salió a tiempo, dado que llegó a tiempo.
+    \end{enumerate}
+    \tcblower
+    \solucion Al utilizar la definición \ref{definicion:probcondicional} tenemos:
+    \begin{enumerate}[label=\alph*), topsep=6pt, itemsep=0pt]
+        \item La probabilidad de que un avión llegue a tiempo, dado que salió a tiempo es
+        $$P(A \mid D) = \frac{P(D \cap A)}{P(D)} = \frac{0.78}{0.83} = 0.94.$$
+        \item La probabilidad de que un avión haya salido a tiempo, dado que llegó a tiempo es
+        $$P(D \mid A) = \frac{P(D \cap A)}{P(A)} = \frac{0.78}{0.82} = 0.95.$$
+    \end{enumerate}
+\end{examplebox}
+
+La noción de probabilidad condicional brinda la capacidad de reevaluar la idea de probabilidad de un evento a la luz de la información adicional; es decir, cuando se sabe que ocurrió otro evento. La probabilidad $P(A \mid B)$ es una actualización de $P(A)$ basada en el conocimiento de que ocurrió el evento $B$. En el ejemplo anterior es importante conocer la probabilidad de que el vuelo llegue a tiempo. Tenemos la información de que el vuelo no salió a tiempo. Con esta información adicional, la probabilidad más pertinente es $P\left( A \mid D^C \right)$, esto es, la probabilidad de que llegue a tiempo, dado que no salió a tiempo. A menudo las conclusiones que se obtienen a partir de observar la probabilidad condicional más importante cambian drásticamente la situación. En este ejemplo, el cálculo de $P\left( A \mid D^C \right)$ es
+$$P\left( A \mid D^C \right) = \frac{P\left(A \cap D^C\right)}{P\left(D^C\right)} = \frac{P(A) - P(A \cap D)}{P\left(D^C\right)} = \frac{0.82 - 0.78}{0.17} = 0.24.$$
+Como resultado, la probabilidad de una llegada a tiempo disminuye significativamente ante la presencia de la información adicional.
+
+\newpage
+
+\subsection*{Eventos independientes}
+
+En el experimento del lanzamiento de un dado de la página \pageref{pagdeeventodados} señalamos que $P(A \mid B) = 2/5$, mientras que $P(A) = 1/3$. Es decir, $P(A \mid B) \neq P(A)$, lo cual indica que $A$ depende de $B$. Consideremos ahora un experimento en el que se sacan 2 cartas, una después de la otra, de una baraja ordinaria, con reemplazo. Los eventos se definen como
+\begin{align*}
+    A: & \text{ la primera carta es un as,} \\
+    B: & \text{ la segunda carta es una espada.}
+\end{align*}
+Como la primera carta se reemplaza, nuestro espacio de sucesos para la primera y segunda
+cartas consta de 52 cartas, que contienen 4 ases y 13 espadas. Entonces,
+$$P(B \mid A) = \frac{13}{52} = \frac{1}{4} \quad \text{ y } \quad P(B) = \frac{13}{52} = \frac{1}{4}.$$
+Es decir, $P(B \mid A) = P(B)$. Cuando esto es cierto, se dice que los eventos $A$ y $B$ son \emph{independientes}.
+
+Aunque la probabilidad condicional permite alterar la probabilidad de un evento a la luz de material adicional, también nos permite entender mejor el muy importante concepto de independencia o, en el contexto actual, de eventos independientes. En el ejemplo \ref{examplebox:ejemplo_de_vuelo} del aeropuerto, $P(A \mid D)$ difiere de $P(A)$. Esto sugiere que la ocurrencia de $D$ influye en $A$ y esto es lo que, de hecho, se espera en este caso. Sin embargo, considere la situación en donde tenemos los eventos $A$ y $B$, y
+$$P(A \mid B) = P(A).$$
+En otras palabras, la ocurrencia de $B$ no influye en las probabilidades de ocurrencia de $A$. Aquí la ocurrencia de $A$ es independiente de la ocurrencia de $B$. No podemos dejar de resaltar la importancia del concepto de independencia, ya que desempeña un papel vital en el material de casi todos los capítulos de este libro y en todas las áreas de la estadística aplicada.
+
+\begin{definicion}{}{}
+    Dos eventos $A$ y $B$ son \emph{independientes} si y sólo si
+    $$P(B \mid A) = P(B) \quad \text{ o } \quad P(A \mid B) = P(A),$$
+    si se asume la existencia de probabilidad condicional. De cualquier otra forma, $A$ y $B$ son dependientes.
+\end{definicion}
+
+Al multiplicar la fórmula de la definición \ref{definicion:probcondicional} por $P(B)$, obtenemos la siguiente regla multiplicativa importante (o regla de producto), que nos permite calcular la probabilidad de que ocurran dos eventos
+
+\begin{theorem}{}{probcondicional2}
+    Si en un experimento pueden ocurrir los eventos $A$ y $B$, entonces
+    $$P(A \cap B) = P(B) P(A \mid B), \quad \text{siempre que } P(B) > 0.$$
+\end{theorem}
+
+Como los eventos $A \cap B$ y $B \cap A$ son equivalentes, del teorema anterior se deduce que también podemos escribir
+$$P(A \cap B) = P(B \cap A) = P(A)P(B \mid A).$$
+%En otras palabras, no importa qué evento se considere como $A$ ni qué evento se considere como $B$.
+
+\begin{theorem}{}{}
+    Dos eventos $A$ y $B$ son independientes si y sólo si
+    $$P(A \cap B) = P(A) P(B).$$
+    Por lo tanto, para obtener la probabilidad de que ocurran dos eventos independientes simplemente calculamos el producto de sus probabilidades individuales.
+\end{theorem}
+
+\newpage
+
+\begin{examplebox}{}{}
+    Una pequeña ciudad dispone de un carro de bomberos y una ambulancia para emergencias. La probabilidad de que el carro de bomberos esté disponible cuando se necesite es 0.98 y la probabilidad de que la ambulancia esté disponible cuando se le requiera es 0.92. En el evento de un herido en un incendio, calcule la probabilidad de que tanto la ambulancia como el carro de bomberos estén disponibles, suponiendo que operan de forma independiente.
+    \tcblower
+    \solucion Sean $A$ y $B$ los respectivos eventos de que estén disponibles el carro de bomberos y la ambulancia. Entonces,
+    $$P(A \cap B) = P(A)P(B) = (0.98)(0.92) = 0.9016.$$
+\end{examplebox}
+
+La regla multiplicativa se puede extender a situaciones con más de dos eventos.
+
+\begin{theorem}{}{}
+    Si, en un experimento, pueden ocurrir los eventos $A_1, A_2, \dots, A_n$, entonces
+    \begin{align*}
+        & P(A_1 \cap A_2 \cap \cdots \cap A_n) \\
+        & \hspace{1cm} = P(A_1) P(A_2 \mid A_1) P(A_3 \mid A_1 \cap A_2) \cdots P(A_n \mid A_1 \cap A_2 \cap \cdots \cap A_{n-1}).
+    \end{align*}
+    Si los eventos $A_1, A_2, \dots, A_n$ son independientes, entonces
+    $$P(A_1 \cap A_2 \cap \cdots \cap A_n) = P(A_1) P(A_2) \cdots P(A_n).$$
+\end{theorem}
+
+\section{Regla de Bayes}
+
+La estadística bayesiana es un conjunto de herramientas que se utiliza en un tipo especial de inferencia estadística que se aplica en el análisis de datos experimentales en muchas situaciones prácticas de ciencia e ingeniería. La regla de Bayes es una de las normas más importantes de la teoría de probabilidad, ya que es el fundamento de la inferencia bayesiana.
+
+\subsection*{Probabilidad total}
+
+\sideFigure[\label{fig:probabilidad_total}]{
+\begin{tikzpicture}
+    \draw[thick] (-2.5,-2) rectangle (2.5,2) node[below left] {$E^C$};
+    \node[below right] at (-2.5,2) {$E^{\phantom{C}}$};
+    \filldraw[cw0!70] (0,0) circle (1.75cm);
+    \draw[cw0] (0,0) circle (1.75cm);
+    \node[white] at (0.6,-0.6) {$E^C \cap A$};
+    \node[white] at (-0.6,0.6) {$E \cap A$};
+    \node[cw0] at (1.5,-1.5) {$A$};
+    \node at (0,2.5) {~};
+    \draw (-1,-2) -- (1,2);
+\end{tikzpicture}
+}
+Regresemos al ejemplo de la sección anterior, en el que se selecciona un individuo al azar de entre los adultos de una pequeña ciudad para que viaje por el país promoviendo las ventajas de establecer industrias nuevas en la ciudad. Suponga que ahora se nos da la información adicional de que 36 de los empleados y 12 de los desempleados son miembros del Club Rotario. Deseamos encontrar la probabilidad del evento $A$ de que el individuo seleccionado sea miembro del Club Rotario. Podemos remitirnos a la figura \ref{fig:probabilidad_total} y escribir $A$ como la unión de los dos eventos mutuamente excluyentes $E \cap A$ y $E^C \cap A$. Por lo tanto, $A = (E \cap A) \cup \left(E^C ∩ A\right)$, y mediante el corolario \ref{corollary:probdeunion_corolario1} del teorema \ref{theorem:probdeunion} y luego mediante el teorema \ref{theorem:probcondicional2}, podemos escribir
+\begin{align*}
+    P(A) & = P\left( (E \cap A) \cup \left(E^C ∩ A\right) \right) \\
+    & = P(E \cap A) + P\left(E^C ∩ A\right) \\
+    & = P(E) P(A \mid E) + P\left(E^C\right) P\left(A \mid E^C\right).
+\end{align*}
+\sideFigure[\label{fig:diagrama_de_arbol_ejemplo}]{
+\begin{tikzpicture}
+    \coordinate (O);
+    \coordinate[above right=1.5cm and 1.5cm of O, label=above:$E$] (E);
+    \coordinate[below right=1.5cm and 1.5cm of O, label=below:$E^C$] (EC);
+    \coordinate[right=3cm of E, label=above:$A$] (A);
+    \coordinate[right=3cm of EC, label=below:$A^C$] (AC);
+    \draw (O) -- node[above, midway, rotate=45] {$P(E) = 2/3$} (E);
+    \draw (O) -- node[below, midway, rotate=-45] {$P\left(E^C\right) = 1/3$} (EC);
+    \draw (E) -- node[above, midway] {$P(A \mid E) = 3/50$} (A);
+    \draw (EC) -- node[below, midway] {$P\left(A \mid E^C\right) = 1/25$} (AC);
+    \foreach \x in {E,EC,A,AC}
+    \filldraw (\x) circle (1.5pt);
+\end{tikzpicture}
+}
+Los datos de la sección anterior, junto con los datos adicionales antes dados para el conjunto $A$, nos permiten calcular
+$$P(E) = \frac{600}{900} = \frac{2}{3} \quad \text{ y } \quad P(A \mid E) = \frac{36}{600} = \frac{3}{50},$$
+y
+$$P\left(E^C\right) = \frac{1}{3} \quad \text{ y } \quad P\left(A \mid E^C\right) = \frac{12}{300} = \frac{1}{25}.$$
+Si mostramos estas probabilidades mediante el diagrama de árbol de la figura \ref{fig:diagrama_de_arbol_ejemplo}, donde la primera rama da la probabilidad $P(E)P(A \mid E)$ y la segunda rama da la probabilidad $P\left(E^C\right) P\left(A \mid E^C\right)$, deducimos que\newpage
+$$P(A) = \left( \frac{2}{3} \right) \left( \frac{3}{50} \right) + \left( \frac{1}{3} \right) \left( \frac{1}{25} \right) = \frac{4}{75}.$$
+
+Una generalización del ejemplo anterior para el caso en donde el espacio de sucesos
+se parte en $k$ subconjuntos se cubre mediante el siguiente teorema, que algunas veces se denomina \emph{teorema de probabilidad total} o \emph{regla de eliminación}.
+
+\begin{theorem}{}{}
+    Si los eventos $B_1, B_2, \dots, B_k$ constituyen una partición del espacio de sucesos $\Omega$, tal que $P(B_i) \neq 0$ para $i = 1, 2, \dots, k$, entonces, para cualquier evento $A$ de $\Omega$,
+    $$P(A) = \sum_{i=1}^{k} P(B_i \cap A) = \sum_{i=1}^{k} P(B_i) P(A \mid B_i).$$
+    \solucion Considere siguiente diagrama de Venn.
+    \begin{center}
+        \begin{tikzpicture}
+            \coordinate (A) at (-4,-2.75);
+            \coordinate (B) at (-4,2.75);
+            \coordinate (C) at (4,2.75);
+            \coordinate (D) at (4,-2.75);
+            \coordinate (PO) at ($(A)!.5!(B)$);
+            \coordinate (CO) at ($(B)!.8!(C)$);
+            \draw[thick] (A) rectangle (C);
+            %
+            \filldraw[cw0!70] (0,0) circle (2cm);
+            \draw[thick,cw0] (0,0) circle (2cm);
+            %
+            \draw ($(B)!.2!(C)$) coordinate (TO) -- ($(B)!.8!(C)$) coordinate (DI) -- ($(B)+(4.5,-2.25)$) coordinate (AN) -- cycle;
+            \draw (D) -- ($(DI)!.8!(AN)$);
+            \draw ($(D)!.6!(A)$) coordinate (JA) -- ($(PO)!.1!(CO)$) coordinate (JO);
+            \draw ($(JA)!.3!(JO)$) -- ($(TO)!.8!(AN)$);
+            \draw ($(A)!.5!(B)$) -- ($(TO)!.6!(AN)$);
+            %
+            \node[white] at (1,-1) {$A$};
+            \node at (-3,1.5) {$B_1$};
+            \node at (-3,-1.5) {$B_2$};
+            \node at (1.5,2.25) {$B_3$};
+            \node at (-2.5,0) {$B_4$};
+            \node at (3.5,0) {$B_5$};
+            \node at (2,-2) {$\cdots$};
+        \end{tikzpicture}
+        \captionsetup*[figure]{hypcap=false}%
+        \captionof{figure}{Partición del espacio de sucesos $\Omega$}
+    \end{center}
+    Se observa que el evento $A$ es la unión de los eventos mutuamente excluyentes
+    $$B_1 \cap A, B_2 \cap A, \dots, B_k \cap A;$$
+    es decir,
+    $$A = (B_1 \cap A) \cup (B_2 \cap A) \cup \cdots \cup (B_k \cap A).$$
+    Por medio del corolario \ref{corollary:probdeunion_corolario2} del teorema \ref{theorem:probdeunion} y el teorema \ref{theorem:probcondicional2} obtenemos
+    \begin{align*}
+        P(A) & = P\big( (B_1 \cap A) \cup (B_2 \cap A) \cup \cdots \cup (B_k \cap A) \big) \\
+        & = P(B_1 \cap A) + P(B_2 \cap A) + \cdots + P(B_k \cap A) \\
+        & = \sum_{i=1}^{k} P(B_i \cap A) \\
+        & = \sum_{i=1}^{k} P(B_i) P(A \mid B_i).
+    \end{align*}
+\end{theorem}
+
+\begin{theorem}{}{}
+    Si los eventos $B_1, B_2, \dots, B_k$ constituyen una partición del espacio de sucesos $\Omega$, donde $P(B_i) \neq 0$ para $i = 1, 2, \dots, k$, entonces, para cualquier evento $A$ en $\Omega$, tal que $P(A) \neq 0$,
+    $$P(B_r \mid A) = \frac{P(B_r \mid A)}{\displaystyle\sum_{i=1}^{k}P(B_i \cap A)} = \frac{P(B_r) P(A \mid B_r)}{\displaystyle\sum_{i=1}^{k}P(B_i)P(A \mid B_i)}, \quad \text{para } r = 1, 2, \dots, r.$$
+    \tcblower
+    \solucion Es inmediato usando la definición de probabilidad condicional y luego usando teorema anterior.
+\end{theorem}
+
+\newpage
+
+\begin{examplebox}{}{}
+    Una empresa de manufactura emplea tres planos analíticos para el diseño y desarrollo de un producto específico. Por razones de costos los tres se utilizan en momentos diferentes. De hecho, los planos 1, 2 y 3 se utilizan para $30\%$, $20\%$ y $50\%$ de los productos, respectivamente. La tasa de defectos difiere en los tres procedimientos de la siguiente manera,
+    $$P(D \mid P_1) = 0.01, \quad P(D \mid P_2) = 0.03, \quad P(D \mid P_3) = 0.02$$
+    en donde $P(D \mid P_j)$ es la probabilidad de que un producto esté defectuoso, dado el plano $j$. Si se observa un producto al azar y se descubre que está defectuoso, ¿cuál de los planos tiene más probabilidades de haberse utilizado y, por lo tanto, de ser el responsable?
+    \tcblower
+    \solucion A partir del planteamiento del problema
+    $$P(P_1) = 0.30, \quad P(P_2) = 0.20, \quad P(P_3) = 0.50,$$
+    debemos calcular $P(P_j \mid D)$ para $j = 1, 2, 3$. La regla de Bayes muestra
+    \begin{align*}
+        P(P_1 \mid D) & = \frac{P(P_1) P(D \mid P_1)}{P(P_1)P(D \mid P_1) + P(P_2)P(D \mid P_2) + P(P_3)P(D \mid P_3)} \\
+        & = \frac{(0.30)(0.01)}{(0.3)(0.01) + (0.20)(0.03) + (0.50)(0.02)} \\
+        & = 0.158.
+    \end{align*}
+    De manera análoga,
+    $$P(P_2 \mid D) = \frac{(0.03)(0.20}{0.019} = 0.316 \quad \text{ y } \quad P(P_3 \mid D) = \frac{(0.02)(0.50)}{0.019} = 0.526.$$
+    La probabilidad condicional de un defecto, dado el plano 3, es la mayor de las tres; por consiguiente, un defecto en un producto elegido al azar tiene más probabilidad de ser el resultado de haber usado el plano 3.
+\end{examplebox}
+
+\section{Variables aleatorias y distribución de probabilidad}
+
+La estadística realiza inferencias acerca de las poblaciones y sus características. Se llevan a cabo experimentos cuyos resultados se encuentran sujetos al azar. La prueba de un número de componentes electrónicos es un ejemplo de experimento estadístico, un concepto que se utiliza para describir cualquier proceso mediante el cual se generan varias observaciones al azar. A menudo es importante asignar una descripción numérica al resultado. Por ejemplo, cuando se prueban tres componentes electrónicos, el espacio de sucesos que ofrece una descripción detallada de cada posible resultado se escribe como
+$$\Omega = \{ NNN, NND, NDN, DNN, NDD, DND, DDN, DDD \}$$
+donde $N$ denota “no defectuoso”, y $D$, “defectuoso”. Es evidente que nos interesa el número de componentes defectuosos que se presenten. De esta forma, a cada punto en el espacio de sucesos se le asignará un valor numérico de 0, 1, 2 o 3. Estos valores son, por supuesto, cantidades aleatorias determinadas por el resultado del experimento. Se pueden ver como valores que toma la variable aleatoria $X$, es decir, el número de artículos defectuosos cuando se prueban tres componentes electrónicos.
+
+\begin{definicion}{}{}
+    Una \emph{variable aleatoria} es una función que asocia un número real con cada elemento del espacio de sucesos.
+\end{definicion}
+
+\newpage
+
+Utilizaremos una letra mayúscula, digamos $X$, para denotar una variable aleatoria, y su correspondiente letra minúscula, $x$ en este caso, para uno de sus valores. En el ejemplo de la prueba de componentes electrónicos observamos que la variable aleatoria $X$ toma el valor 2 para todos los elementos en el subconjunto
+$$E = \{ DDN, DND, NDD \}$$
+del espacio de sucesos $\Omega$. Esto es, cada valor posible de $X$ representa un evento que es un subconjunto del espacio de sucesos para el experimento dado.
+
+\begin{examplebox}{}{deprimerejemplo}
+    De una urna que contiene 4 bolas rojas y 3 negras se sacan 2 bolas de manera sucesiva, sin reemplazo. Los posibles resultados y los valores $y$ de la variable aleatoria $Y$, donde $Y$ es el número de bolas rojas, son
+    \begin{center}
+        \begin{NiceTabular}{cc}[cell-space-limits=2pt]
+            \toprule
+            \textbf{Espacio de sucesos} & $y$ \\
+            \midrule
+            $RR$ & 2 \\
+            $RN$ & 1 \\
+            $NR$ & 1 \\
+            $NN$ & 0 \\
+            \bottomrule
+        \end{NiceTabular}
+        \captionsetup*[table]{hypcap=false}
+        \captionof{table}{}
+    \end{center}
+\end{examplebox}
+
+\begin{examplebox}{}{deejemplomedio}
+    El empleado de un almacén regresa tres cascos de seguridad al azar a tres obreros de un taller siderúrgico que ya los habían probado. Si Smith, Jones y Brown, en ese orden, reciben uno de los tres cascos, liste los elementos para los posibles órdenes en que el empleado del almacén regresa los cascos, después calcule el valor $m$ de la variable aleatoria $M$ que representa el número de emparejamientos correctos.
+    \tcblower
+    \solucion Si $S$, $J$ y $B$ representan, respectivamente, los cascos que recibieron Smith, Jones y Brown, entonces los posibles arreglos en los cuales se pueden regresar los cascos y el número de emparejamientos correctos son
+    \begin{center}
+        \begin{NiceTabular}{cc}[cell-space-limits=2pt]
+            \toprule
+            \textbf{Espacio de sucesos} & $m$ \\
+            \midrule
+            $SJB$ & 3 \\
+            $SBJ$ & 1 \\
+            $BJS$ & 1 \\
+            $JSB$ & 1 \\
+            $JBS$ & 0 \\
+            $BSJ$ & 0 \\
+            \bottomrule
+        \end{NiceTabular}
+        \captionsetup*[table]{hypcap=false}
+        \captionof{table}{}
+    \end{center}
+\end{examplebox}
+
+En cada uno de los dos ejemplos anteriores, el espacio de sucesos contiene un número finito de elementos. Por el contrario, cuando lanzamos un dado hasta que salga un 5, obtenemos un espacio de sucesos con una secuencia de elementos interminable,
+$$\Omega = \{ F, NF, NNF, NNNF, \dots \},$$
+donde $F$ y $N$ representan, respectivamente, la ocurrencia y la no ocurrencia de un 5. Sin embargo, incluso en este experimento el número de elementos se puede igualar a la cantidad total de números enteros, de manera que hay un primer elemento, un segundo, un tercero y así sucesivamente, por lo que se pueden contar.
+
+Hay casos en que la variable aleatoria es categórica por naturaleza en los cuales se utilizan las llamadas variables \emph{ficticias}. Un buen ejemplo de ello es el caso en que la variable aleatoria es binaria por naturaleza, como se indica a continuación.
+
+\newpage
+
+\begin{examplebox}{}{deultimoejemplo}
+    Considere la condición en que salen componentes de la línea de ensamble y se les clasifica como defectuosos o no defectuosos. Defina la variable aleatoria $X$ mediante
+    $$X = \begin{cases}
+        1, & \text{ si el componente está defectuoso}, \\
+        0, & \text{ si el componente no está defectuoso}.
+    \end{cases}$$
+    Evidentemente la asignación de 1 o 0 es arbitraria, aunque bastante conveniente. La variable aleatoria en la que se eligen 0 y 1 para describir los dos posibles valores se denomina \emph{variable aleatoria de Bernoulli}.
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Los estadísticos utilizan planes de muestreo para aceptar o rechazar lotes de materiales. Suponga que uno de los planes de muestreo implica obtener una muestra independiente de 10 artículos de un lote de 100, en el que 12 están defectuosos. Si $X$ representa a la variable aleatoria, definida como el número de artículos que están defectuosos en la muestra de 10, la variable aleatoria toma los valores $0, 1, 2, \dots, 9, 10$.
+\end{examplebox}
+
+\begin{examplebox}{}{variablecontinua1}
+    Existe interés por la proporción de personas que responden a cierta encuesta enviada por correo. Sea $X$ tal proporción. $X$ es una variable aleatoria que toma todos los valores de $x$ para los cuales $0 \leq x \leq 1$.
+\end{examplebox}
+
+\begin{examplebox}{}{variablecontinua2}
+    Sea $X$ la variable aleatoria definida como el tiempo que pasa, en horas, para que un radar detecte entre conductores sucesivos a los que exceden los límites de velocidad. La variable aleatoria $X$ toma todos los valores de $x$ para los que $x \geq 0$.
+\end{examplebox}
+
+\begin{definicion}{}{}
+    Si un espacio de sucesos contiene un número finito de posibilidades, o una serie interminable con tantos elementos como números enteros existen, se llama \emph{espacio de sucesos discreto}.
+\end{definicion}
+
+Los resultados de algunos experimentos estadísticos no pueden ser ni finitos ni contables. Éste es el caso, por ejemplo, en una investigación que se realiza para medir las distancias que recorre un automóvil de cierta marca, en una ruta de prueba preestablecida, con cinco litros de gasolina. Si se asume que la distancia es una variable que se mide con algún grado de precisión, entonces salta a la vista que tenemos un número infinito de distancias posibles en el espacio de suceso, que no se pueden igualar a la cantidad total de números enteros. Lo mismo ocurre en el caso de un experimento en que se registra el tiempo requerido para que ocurra una reacción química, en donde una vez más los posibles intervalos de tiempo que forman el espacio de sucesos serían un número infinito e incontable. Vemos ahora que no todos los espacios de sucesos necesitan ser discretos.
+
+\begin{definicion}{}{}
+    Si un espacio de sucesos contiene un número infinito de posibilidades, igual al número de puntos en un segmento de recta, se le denomina \emph{espacio de sucesos continuo}.
+\end{definicion}
+
+Una variable aleatoria se llama \emph{variable aleatoria discreta} si se puede contar su conjunto de resultados posibles. En los ejemplos \ref{examplebox:deprimerejemplo} a \ref{examplebox:deultimoejemplo} las variables aleatorias son discretas. Sin embargo, una variable aleatoria cuyo conjunto de valores posibles es un intervalo completo de números no es discreta. Cuando una variable aleatoria puede tomar valor en una escala continua, se le denomina \emph{variable aleatoria continua}. A menudo los posibles valores de una variable aleatoria continua son precisamente los mismos valores incluidos en el espacio de sucesos continuo. Es evidente que las variables aleatorias descritas en los ejemplos \ref{examplebox:variablecontinua1} y \ref{examplebox:variablecontinua2} son variables aleatorias continuas. En la mayoría de los problemas prácticos las variables aleatorias continuas representan datos medidos, como serían todos los posibles pesos, alturas, temperaturas, distancias o periodos de vida; en tanto que las variables aleatorias discretas representan datos por conteo, como el número de artículos defectuosos en una muestra de $k$ artículos o el número de accidentes de carretera por año en una entidad específica. Observe que tanto $Y$ como $M$, las variables aleatorias de los ejemplos \ref{examplebox:deprimerejemplo} y \ref{examplebox:deejemplomedio}, representan datos por conteo: $Y$ el número de bolas rojas y $M$ el número de emparejamientos correctos de cascos.
+
+\subsection*{Distribuciones discretas de probabilidad}
+
+Una variable aleatoria discreta toma cada uno de sus valores con cierta probabilidad. Al lanzar una moneda tres veces, la variable $X$, que representa el número de caras, toma el valor 2 con $3/8$ de probabilidad, pues 3 de los 8 elementos igualmente probables tienen como resultado dos caras y una cruz. Si se suponen pesos iguales para los eventos simples del ejemplo \ref{examplebox:deejemplomedio}, la probabilidad de que ningún obrero reciba el casco correcto, es decir, la probabilidad de que $M$ tome el valor cero, es $1/3$. Los valores posibles $m$ de $M$ y sus probabilidades son
+\begin{nscenter}
+    \begin{NiceTabular}{c|ccc}[cell-space-limits=2pt]
+        $m$ & 0 & 1 & 3 \\
+        \hline \\[-3.5mm]
+        $P(M = m)$ & $\dfrac{1}{3}$ & $\dfrac{1}{2}$ & $\dfrac{1}{6}$
+    \end{NiceTabular}
+\end{nscenter}
+Observe que los valores de $m$ agotan todos los casos posibles, por lo tanto, las probabilidades suman 1.
+
+Con frecuencia es conveniente representar todas las probabilidades de una variable aleatoria $X$ usando una fórmula, la cual necesariamente sería una función de los valores numéricos $x$ que denotaremos con $f(x)$, $g(x)$, $r(x)$ y así sucesivamente. Por lo tanto, escribimos $f(x) = P(X = x)$; es decir, $f(3) = P(X = 3)$. Al conjunto de pares ordenados $\big(x, f(x)\big)$ se le llama función de probabilidad, función de masa de probabilidad o distribución de probabilidad de la variable aleatoria discreta $X$.
+
+\begin{definicion}{}{}
+    El conjunto de pares ordenados $\big(x, f(x)\big)$ es una \emph{función de probabilidad}, una \emph{función de masa de probabilidad} o una \emph{distribución de probabilidad} de la variable aleatoria discreta $X$ si, para cada resultado $x$ posible,
+    \begin{enumerate}[label=\roman*), topsep=6pt, itemsep=0pt]
+        \item $f(x) \geq 0$,
+        \item $\displaystyle \sum_x f(x) = 1$,
+        \item $P(X = x) = f(x)$.
+    \end{enumerate}
+\end{definicion}
+
+\begin{examplebox}{}{}
+    Un embarque de 20 computadoras portátiles similares para una tienda minorista contiene 3 que están defectuosas. Si una escuela compra al azar 2 de estas computadoras, calcule la distribución de probabilidad para el número de computadoras defectuosas.
+    \tcblower
+    \solucion Sea $X$ una variable aleatoria cuyos valores $x$ son los números posibles de computadoras defectuosas compradas por la escuela. Entonces $x$ sólo puede asumir los números 0, 1 y 2. Así,
+    \begin{align*}
+        f(0) & = P(X = 0) = \frac{\binom{3}{0} \binom{17}{2}}{\binom{20}{2}} = \frac{68}{95}, \\
+        f(1) & = P(X = 1) = \frac{\binom{3}{1} \binom{17}{1}}{\binom{20}{2}} = \frac{51}{190}, \\
+        f(2) & = P(X = 2) = \frac{\binom{3}{2} \binom{17}{0}}{\binom{20}{2}} = \frac{3}{190}.
+    \end{align*}
+    Por consiguiente, la distribución de probabilidad de $X$ es
+    \begin{center}
+        \begin{NiceTabular}{c|ccc}[cell-space-limits=2pt]
+            $x$ & 0 & 1 & 2 \\
+            \hline \\[-3.5mm]
+            $f(x)$ & $\dfrac{68}{95}$ & $\dfrac{51}{190}$ & $\dfrac{3}{190}$
+        \end{NiceTabular} \qquad $P(X = k) = \dfrac{\binom{3}{k} \binom{17}{2-k}}{\binom{20}{2}}$,~ $k = 0, 1, 2$.
+    \end{center}
+\end{examplebox}
+
+\newpage
+
+Existen muchos problemas en los que desearíamos calcular la probabilidad de que el valor observado de una variable aleatoria $X$ sea menor o igual que algún número real $x$. Al escribir $F(x) = P(X \leq x)$ para cualquier número real $x$, definimos $F(x)$ como la función de la distribución acumulativa de la variable aleatoria $X$.
+
+\begin{definicion}{}{}
+    La función de la distribución acumulativa $F(x)$ de una variable aleatoria discreta $X$ con distribución de probabilidad $f(x)$ es
+    $$F(x) = P(X \leq x) = \sum_{t \leq x} f(t), \quad \text{para } - \infty < x < \infty .$$
+\end{definicion}
+
+Para la variable aleatoria $M$, el número de emparejamientos correctos en el ejemplo \ref{examplebox:deejemplomedio}, tenemos
+$$F(x) = P(X \leq x) = \sum_{t \leq x} f(t) = f(0) + f(1) = \frac{1}{3} + \frac{1}{2} = \frac{5}{6}.$$
+La función de la distribución acumulativa de $M$ es\infoBulle{Es necesario observar en particular el hecho de que la función de la distribución acumulativa es una función no decreciente monótona, la cual no sólo se define para los valores que toma la variable aleatoria dada sino para todos los números reales.}
+$$F(m) = \begin{cases}
+    0, & \text{ para } m < 0, \\
+    \dfrac{1}{3}, & \text{ para } 0 \leq m < 1, \\[2mm]
+    \dfrac{5}{6}, & \text{ para } 1 \leq m < 3, \\
+    1, & \text{ para } m \geq 1.
+\end{cases}$$
+
+\begin{examplebox}{}{}
+    Calcule la función de la distribución acumulativa de la variable aleatoria $X$ definida como se muestra a continuación:
+    $$f(x) = \frac{1}{16} \binom{4}{x}, \quad \text{para } x = 0, 1, 2, 3, 4.$$
+    Además, utilice $F(x)$ para verificar que $f(2) = 3/8$.
+    \tcblower
+    \solucion El cálculo directo de la distribución de probabilidad da
+    $$f(0) = \frac{1}{16}, \quad f(1) = \frac{1}{4}, \quad f(2) = \frac{3}{8}, \quad f(3) = \frac{1}{4}, \quad f(4) = \frac{1}{16}.$$
+    Por lo tanto,
+    \begin{align*}
+        F(0) & = f(0) = \frac{1}{16}, \\
+        F(1) & = f(0) + f(1) = \frac{5}{16}, \\
+        F(2) & = f(0) + f(1) + f(2) = \frac{11}{16}, \\
+        F(3) & = f(0) + f(1) + f(2) + f(3) = \frac{15}{16}, \\
+        F(4) & = f(0) + f(1) + f(2) + f(3) + f(4) = 1.
+    \end{align*}
+    y por consiguiente,
+    $$F(x) = \begin{cases}
+        0, & \text{ para } x < 0, \\
+        \dfrac{1}{16}, & \text{ para } 0 \leq x < 1, \\[2mm]
+        \dfrac{5}{16}, & \text{ para } 1 \leq x < 2, \\[2mm]
+        \dfrac{11}{16}, & \text{ para } 2 \leq x < 3, \\[2mm]
+        \dfrac{15}{16}, & \text{ para } 3 \leq x < 4, \\[2mm]
+        1, & \text{ para } x \geq 4.
+    \end{cases} \quad\qquad \text{ y } \quad\qquad \begin{aligned}
+        f(2) & = F(2) - F(1) \\
+        & = \frac{11}{16} - \frac{5}{16} \\
+        & = \frac{3}{8}.
+    \end{aligned}$$
+\end{examplebox}
+
+\newpage
+
+Muchas veces es útil ver una distribución de probabilidad en forma gráfica. Se pueden
+graficar los puntos $\big(x, f (x)\big)$ del ejemplo anterior para obtener la figura \ref{fig:masa_probabilidad}. Si unimos los puntos al eje $x$, ya sea con una línea punteada o con una línea sólida, obtenemos una gráfica de función de masa de probabilidad. La figura \ref{fig:masa_probabilidad} permite ver fácilmente qué valores de $X$ tienen más probabilidad de ocurrencia y, en este caso, también indica una situación perfectamente simétrica.
+
+Sin embargo, en vez de graficar los puntos $\big(x, f (x)\big)$, lo que hacemos más a menudo es construir rectángulos como en la figura \ref{fig:histograma_probabilidad}. Aquí los rectángulos se construyen de manera que sus bases, con la misma anchura, se centren en cada valor $x$, y que sus alturas igualen a las probabilidades correspondientes dadas por $f(x)$. Las bases se construyen de forma tal que no dejen espacios entre los rectángulos. La figura \ref{fig:histograma_probabilidad} se denomina \emph{histograma de probabilidad}.
+
+Como cada base en la figura \ref{fig:histograma_probabilidad} tiene el ancho de una unidad, $P(X = x)$ es igual al área del rectángulo centrado en $x$. Incluso si las bases no tuvieran el ancho de una unidad, podríamos ajustar las alturas de los rectángulos para que tengan áreas que igualen las probabilidades de $X$ de tomar cualquiera de sus valores $x$. Este concepto de utilizar áreas para representar probabilidades es necesario para nuestro estudio de la distribución de probabilidad de una variable aleatoria continua.
+\begin{adjustwidth}{-0.5\marginparsep - \marginparwidth}{0mm}
+    \begin{minipage}[c]{0.7\textwidth}
+    \centering
+        \begin{tikzpicture}
+            \draw (0,5.25) node[above] {$f(x)$} -- (0,0) -- (6.5,0) node[right] {$x$};
+            \foreach \i in {1,2,...,6}
+                \draw (0.2,0.75*\i) -- (0,0.75*\i) node[left] {$\i/16$};
+            \draw[dashed, cw0!70] (0.75,0) -- (0.75,0.75) coordinate (A1);
+            \draw[dashed, cw0!70] (2,0) -- (2,3) coordinate (A2);
+            \draw[dashed, cw0!70] (3.25,0) -- (3.25,4.5) coordinate (A3);
+            \draw[dashed, cw0!70] (4.5,0) -- (4.5,3) coordinate (A4);
+            \draw[dashed, cw0!70] (5.75,0) -- (5.75,0.75) coordinate (A5);
+            \foreach \k in {1,2,...,5}
+                \filldraw[cw0] (A\k) circle (2pt);
+            \foreach \j in {0,1,2,3,4}
+                \draw (1.25*\j + 0.75,0) -- (1.25*\j + 0.75,-0.2) node[below] {$\j$};
+        \end{tikzpicture}
+        \captionsetup*[figure]{hypcap=false}
+        \captionof{figure}{Gráfica de función de masa de probabilidad}
+        \label{fig:masa_probabilidad}
+    \end{minipage}
+    \;\;
+    \begin{minipage}[c]{0.7\textwidth}
+    \centering
+        \begin{tikzpicture}
+            \filldraw[cw0!30] (0.625,0) rectangle (1.875,0.75);
+            \draw[cw0] (0.625,0) rectangle (1.875,0.75);
+            \filldraw[cw0!30] (1.875,0) rectangle (3.125,3);
+            \draw[cw0] (1.875,0) rectangle (3.125,3);
+            \filldraw[cw0!30] (3.125,0) rectangle (4.375,4.5);
+            \draw[cw0] (3.125,0) rectangle (4.375,4.5);
+            \filldraw[cw0!30] (4.375,0) rectangle (5.625,3);
+            \draw[cw0] (4.375,0) rectangle (5.625,3);
+            \filldraw[cw0!30] (5.625,0) rectangle (6.875,0.75);
+            \draw[cw0] (5.625,0) rectangle (6.875,0.75);
+            %
+            \draw (0,5.25) node[above] {$f(x)$} -- (0,0) -- (7.5,0) node[right] {$x$};
+            \foreach \i in {1,2,...,6}
+                \draw (0.2,0.75*\i) -- (0,0.75*\i) node[left] {$\i/16$};
+            \foreach \j in {0,1,2,3,4}
+                \draw (1.25*\j + 1.25,0) -- (1.25*\j + 1.25,-0.2) node[below] {$\j$};
+        \end{tikzpicture}
+        \captionsetup*[figure]{hypcap=false}
+        \captionof{figure}{Histograma de probabilidad}
+        \label{fig:histograma_probabilidad}
+    \end{minipage}
+\end{adjustwidth}
+
+La gráfica de la función de la distribución acumulativa del último ejemplo, que aparece
+como una función escalonada en la figura \ref{fig:distribucion_acumulativa}, se obtiene graficando los puntos $\big(x, F(x)\big)$.
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+        \draw (0,3.75) node[above] {$F(x)$} -- (0,0) -- (6.5,0) node[right] {$x$};
+        \foreach \i in {1,2,...,4}
+            \draw (0.2,0.75*\i) -- (0,0.75*\i) node[left] {$\ifthenelse{\i<4}{\i/4}{1}$};
+        \draw[cw0!70] (0,0) -- (0.75,0);
+        \draw[dashed, cw0!70] (0.75,0) -- (0.75,0.1875) coordinate (A1);
+        \draw[cw0!70] (0.75,0.1875) -- (2,0.1875);
+        \draw[dashed, cw0!70] (2,0.1875) -- (2,0.9375) coordinate (A2);
+        \draw[cw0!70] (2,0.9375) -- (3.25,0.9375);
+        \draw[dashed, cw0!70] (3.25,0.9375) -- (3.25,2.0625) coordinate (A3);
+        \draw[cw0!70] (3.25,2.0625) -- (4.5,2.0625);
+        \draw[dashed, cw0!70] (4.5,2.0625) -- (4.5,2.8125) coordinate (A4);
+        \draw[cw0!70] (4.5,2.8125) -- (5.75,2.8125);
+        \draw[dashed, cw0!70] (5.75,2.8125) -- (5.75,3) coordinate (A5);
+        \draw[cw0!70] (5.75,3) -- (6.5,3);
+        \foreach \j in {0,1,2,3,4}
+            \draw (1.25*\j + 0.75,0) -- (1.25*\j + 0.75,-0.2) node[below] {$\j$};
+        \foreach \k in {1,2,...,5}
+            \filldraw[cw0] (A\k) circle (2pt);
+    \end{tikzpicture}
+    \caption{Gráfica de la función de distribución acumulativa discreta}
+    \label{fig:distribucion_acumulativa}
+\end{figure}
+
+Ciertas distribuciones de probabilidad se aplican a más de una situación física. La distribución de probabilidad del último ejemplo también se aplica a la variable aleatoria $Y$, donde $Y$ es el número de soles que se obtienen cuando una moneda se lanza 4 veces, o a la variable aleatoria $W$, donde $W$ es el número de cartas rojas que resultan cuando se sacan 4 cartas al azar de una baraja de manera sucesiva, se reemplaza cada carta y se baraja antes de sacar la siguiente.
+
+\subsection*{Distribuciones continuas de probabilidad}
+
+Una variable aleatoria continua tiene una probabilidad 0 de adoptar exactamente cualquiera de sus valores. En consecuencia, su distribución de probabilidad no se puede presentar en forma tabular. En un principio esto parecería sorprendente, pero se vuelve más probable cuando consideramos un ejemplo específico. Consideremos una variable aleatoria cuyos valores son las estaturas de todas las personas mayores de 21 años de edad. Entre cualesquiera dos valores, digamos 163.5 y 164.5 centímetros, o incluso entre 163.99 y 164.01 centímetros, hay un número infinito de estaturas, una de las cuales es 164 centímetros. La probabilidad de seleccionar al azar a una persona que tenga exactamente 164 centímetros de estatura en lugar de una del conjunto infinitamente grande de estaturas tan cercanas a 164 centímetros que humanamente no sea posible medir la diferencia es remota, por consiguiente, asignamos una probabilidad 0 a tal evento. Sin embargo, esto no ocurre si nos referimos a la probabilidad de seleccionar a una persona que mida al menos 163 centímetros pero no más de 165 centímetros de estatura. Aquí nos referimos a un intervalo en vez de a un valor puntual de nuestra variable aleatoria.
+
+Nos interesamos por el cálculo de probabilidades para varios intervalos de variables aleatorias continuas como $P(a < X < b)$, $P(W \geq c)$, etc. Observe que cuando $X$ es continua,
+$$P(a < X \leq b) = P(a < X < b) + P(X = b) = P(a < X < b).$$
+Es decir, no importa si incluimos o no un extremo del intervalo. Sin embargo, esto no es cierto cuando $X$ es discreta.
+
+Aunque la distribución de probabilidad de una variable aleatoria continua no se puede representar de forma tabular, sí es posible plantearla como una fórmula, la cual necesariamente será función de los valores numéricos de la variable aleatoria continua $X$, y como tal se representará mediante la notación funcional $f(x)$. Cuando se trata con variables continuas, a $f(x)$ por lo general se le llama \emph{función de densidad de probabilidad}, o simplemente \emph{función de densidad} de $X$. Como $X$ se define sobre un espacio de sucesos continuo, es posible que $f(x)$ tenga un número finito de discontinuidades. Sin embargo, la mayoría de las funciones de densidad que tienen aplicaciones prácticas en el análisis de datos estadísticos son continuas y sus gráficas pueden tomar cualesquiera de varias formas, algunas de las cuales se presentan en la figura 1.10. Como se utilizarán áreas para representar probabilidades y éstas son valores numéricos positivos, la función de densidad debe caer completamente arriba del eje $x$.
+
+\newpage
+
+Una función de densidad de probabilidad se construye de manera que el área bajo su curva limitada por el eje $x$ sea igual a 1, cuando se calcula en el rango de $X$ para el que se define $f(x)$. Esto asegura que la probabilidad total de todos los posibles valores de $X$ sea 1, cumpliendo así con una de las propiedades fundamentales de las funciones de densidad de probabilidad.
+
+Como este rango de $X$ es un intervalo finito, siempre es posible extender el intervalo para que incluya a todo el conjunto de números reales. Esto se logra definiendo $f(x)$ como cero en todos los puntos fuera del intervalo original. De esta manera, la función de densidad de probabilidad se puede considerar en todo el dominio de los números reales sin alterar su propiedad esencial de que el área bajo la curva es igual a 1.
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[declare function={
+        a = -3;
+        b = 6;
+        f(\x) = 1/(0.13*sqrt(2*pi))*exp(-0.03333*\x^2);
+        }
+    ]
+        \begin{axis}[
+            hide axis,
+        ]
+            \addplot[name path = A, cw0, thick, domain=-12:12, smooth] {f(x)};
+            \path[name path = B] (\pgfkeysvalueof{/pgfplots/xmin},0) -- (\pgfkeysvalueof{/pgfplots/xmax},0);
+            \addplot[cw0!30] fill between [of=A and B, soft clip={domain=a:b},];
+            \addplot[cw0] coordinates {(a,{f(a)})(a,0)} node[below] {$\vphantom{b}a$};
+            \addplot[cw0] coordinates {(b,{f(b)})(b,0)} node[below] {$b$};
+            %
+            \addplot[-Stealth, thick] coordinates {(-12,0)(12.5,0)} node[right] {$x$};
+            \addplot[-Stealth, thick] coordinates {(-12,0)(-12,3.3)} node[above] {$f(x)$};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{$P(a < X < b)$}
+    \label{fig:prob_densidad}
+\end{figure}
+
+En la figura \ref{fig:prob_densidad}, la probabilidad de que $X$ tome un valor entre $a$ y $b$ es igual al área sombreada bajo la función de densidad entre las ordenadas en $x = a$ y $x = b$. Esta área representa la probabilidad acumulada de que la variable aleatoria $X$ se encuentre dentro del intervalo $[a, b]$. Matemáticamente, esta probabilidad se calcula utilizando la integral definida de $f(x)$ entre $a$ y $b$, y está dada por la expresión:
+$$P(a < X < b) = \int_a^b f(x) dx.$$
+Esta integral suma todas las pequeñas probabilidades infinitesimales a lo largo del intervalo, proporcionando así la probabilidad total de que $X$ esté entre $a$ y $b$.
+
+\begin{definicion}{}{}
+    La función $f(x)$ es una \emph{función de densidad de probabilidad} para la variable aleatoria continua $X$, definida en el conjunto de números reales, si
+    \begin{enumerate}[label=\roman*), topsep=6pt, itemsep=0pt]
+        \item $f(x) \geq 0$, para toda $x \in \RR$.
+        \item $\displaystyle\int_{-\infty}^{\infty} f(x) dx = 1$.
+        \item $\displaystyle P(a < X < b) = \int_a^b f(x) dx$.
+    \end{enumerate}
+\end{definicion}
+
+En el siguiente ejemplo, se demostrará que $f(x)$ cumple con las dos primeras condiciones de la definición anterior. En cuanto a la tercera condición, esta es una propiedad inherente a las funciones de densidad de probabilidad y no requiere una verificación adicional específica. Esto se debe a que la integral representa la “acumulación” de probabilidad entre los límites $a$ y $b$, una consecuencia directa del hecho de que la integral de $f(x)$ sobre todo el dominio es igual a 1 (segundo inciso de la definición). Por lo tanto, dado que $f(x)$ ya satisface las dos primeras condiciones, la tercera se deduce de manera natural, ya que la función está correctamente normalizada y no tiene valores negativos, lo que asegura que las probabilidades sean coherentes dentro de cualquier intervalo dado.
+
+\newpage
+
+\begin{examplebox}{}{}
+    Suponga que el error en la temperatura de reacción, en °C, en un experimento de laboratorio controlado, es una variable aleatoria continua $X$ que tiene la función de densidad de probabilidad
+    $$f(x) = \begin{cases}
+        \dfrac{x^2}{3}, & -1 < x < 2, \\[2mm]
+        0, & \text{en otro caso}.
+    \end{cases}$$
+    \begin{enumerate}[label=\alph*), topsep=6pt, itemsep=0pt]
+        \item Verifique que $f(x)$ es una función de densidad.
+        \item Calcule $P(0 < X \leq 1)$.
+    \end{enumerate}
+    \tcblower
+    \solucion Usemos la definición anterior.
+    \begin{enumerate}[label=\alph*), topsep=6pt, itemsep=0pt]
+        \item Evidentemente, $f(x) \geq 0$. Para verificar la condición 2 de la definición anterior tenemos
+        $$\int_{-\infty}^{\infty} f(x) dx = \int_{-1}^{2} \frac{x^2}{3} dx = \left. \frac{x^3}{9} \right|_{-1}^{2} = \frac{8}{9} + \frac{1}{9} = 1.$$
+        \item Si usamos la fórmula (iii) de la definición anterior, obtenemos
+        $$P(0 < X \leq 1) = \int_{0}^{1} \frac{x^2}{3} dx = \left. \frac{x^3}{9} \right|_{0}^{1} = \frac{1}{9}.$$
+    \end{enumerate}
+\end{examplebox}
+
+\begin{definicion}{}{}
+    La función de distribución acumulativa $F(x)$, de una variable aleatoria continua $X$ con función de densidad $f(x)$, es
+    $$F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t) dt, \quad \text{para } -\infty < x < \infty .$$
+\end{definicion}
+
+Como una consecuencia inmediata de la definición anterior, se pueden escribir los dos resultados
+$$P(a < X < b) = F(b) - F(a) \quad \text{y} \quad f(x) = \frac{dF(x)}{dx},$$
+si existe la derivada.
+
+\section{Esperanza matemática}
+
+\section{Loterías}
+
+\section{Racionalidad}
+
+\section{Teoría de la utilidad esperada}
